@@ -83,7 +83,7 @@
                                               "name": "Trịnh Khanh",
                                               "attributes": {
                                                 "đời": "12",
-                                                "vai_tro": "Đức Thượng tổ",
+                                                "vai_tro": "Đức Thượng Tổ",
                                                 "chuc_vu": "Tri Phủ Lý Nhân",
                                                 "nam_sinh": 1778
                                               },
@@ -147,7 +147,7 @@
                                               "name": "Trịnh Tượng",
                                               "attributes": {
                                                 "đời": "12",
-                                                "vai_tro": "Đức Thượng tổ",
+                                                "vai_tro": "Đức Thượng Tổ",
                                                 "chuc_vu": "Phó Ty Nội Cạn",
                                                 "nam_sinh": 1781
                                               },
@@ -217,7 +217,7 @@
                                               "name": "Trịnh Suý",
                                               "attributes": {
                                                 "đời": "12",
-                                                "vai_tro": "Đức Thượng tổ",
+                                                "vai_tro": "Đức Thượng Tổ",
                                                 "chuc_vu": "Tiên Tả Đội Vệ Uý",
                                                 "nam_sinh": 1784
                                               },
@@ -479,6 +479,7 @@
                                                                   "attributes": {
                                                                     "đời": "17",
                                                                     "vai_tro": "Ông",
+                                                                    "ten_that": "Chí Thành",
                                                                     "nam_sinh": 1929,
                                                                     "nam_mat": 2019,
                                                                     "ngay_ky": "30/11",
@@ -689,6 +690,7 @@
                                                                       "name": "Trịnh Bá Nghênh",
                                                                       "attributes": {
                                                                         "đời": "18",
+                                                                        "ten_that": " (Liệt Sỹ)",
                                                                         "nam_sinh": 1950,
                                                                         "nam_mat": 1971,
                                                                         "vai_tro": "Ông Mãnh"
@@ -1183,7 +1185,7 @@
                                               "name": "Trịnh Ích",
                                               "attributes": {
                                                 "đời": "12",
-                                                "vai_tro": "Đức Thượng tổ",
+                                                "vai_tro": "Đức Thượng Tổ",
                                                 "chuc_vu": "Tri Phủ Nông Cống",
                                                 "nam_sinh": 1787
                                               },

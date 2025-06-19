@@ -3,6 +3,7 @@ import "./TreeChart.css";
 import Tree from "react-d3-tree";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import treeData from "./treeData.json";
 
 const renderCustomNode = ({ nodeDatum }) => {
   const doi = parseInt(nodeDatum.attributes?.đời);
@@ -34,7 +35,7 @@ const renderCustomNode = ({ nodeDatum }) => {
     <g transform="translate(0, -20)">
       <rect
         width="200"
-        height="210"
+        height="220"
         x="-100"
         y="-95"
         fill={fillColor}
@@ -71,32 +72,43 @@ const renderCustomNode = ({ nodeDatum }) => {
               {nodeDatum.attributes.vai_tro}
             </text>
           )}
-          {nodeDatum.attributes?.chuc_vu && (
-            <text
-              fill="#1e3a8a"
-              x="0"
-              y="-30"
-              textAnchor="middle"
-              fontSize="14"
-              letterSpacing="0.4px"
-            >
-              {nodeDatum.attributes.chuc_vu}
-            </text>
-          )}
         </>
       )}
 
       <text
         fill="#000000"
         x="0"
-        y="-10"
+        y="-30"
         textAnchor="middle"
-        fontSize="18"
+        fontSize="20"
         letterSpacing="0.5px"
       >
         {nodeDatum.name}
       </text>
-
+      {nodeDatum.attributes?.ten_that && (
+        <text
+          fill="#6b7280"
+          x="0"
+          y="-10"
+          textAnchor="middle"
+          fontSize="16"
+          letterSpacing="0.3px"
+        >
+          {nodeDatum.attributes.ten_that}
+        </text>
+      )}
+      {nodeDatum.attributes?.chuc_vu && (
+        <text
+          fill="#1e3a8a"
+          x="0"
+          y="-10"
+          textAnchor="middle"
+          fontSize="14"
+          letterSpacing="0.4px"
+        >
+          {nodeDatum.attributes.chuc_vu}
+        </text>
+      )}
       {nodeDatum.attributes?.nam_sinh && (
         <text
           fill="#374151"
@@ -200,18 +212,6 @@ const renderCustomNode = ({ nodeDatum }) => {
           {nodeDatum.attributes.hon_tu}
         </text>
       )}
-      {nodeDatum.attributes?.ten_that && (
-        <text
-          fill="#6b7280"
-          x="0"
-          y="90"
-          textAnchor="middle"
-          fontSize="16"
-          letterSpacing="0.3px"
-        >
-          {nodeDatum.attributes.ten_that}
-        </text>
-      )}
     </g>
   );
 };
@@ -285,8 +285,6 @@ const downloadImage = async (ref, filteredTreeData = null) => {
     ref.current.style.height = oldHeight;
   });
 };
-
-import treeData from "./treeData.json";
 
 export default function SoDoPhaHeTrinhBaToc() {
   const treeContainer = useRef(null);
