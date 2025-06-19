@@ -84,13 +84,13 @@ const renderCustomNode = ({ nodeDatum }) => {
   }
   if (nodeDatum.attributes?.hon_the) {
     lines.push({
-      text: nodeDatum.attributes.hon_the,
+      text: nodeDatum.attributes.hon_the.toUpperCase(),
       style: { fill: "#6b7280", fontSize: 16 },
     });
   }
   if (nodeDatum.attributes?.hon_the_1) {
     lines.push({
-      text: nodeDatum.attributes.hon_the_1,
+      text: nodeDatum.attributes.hon_the_1.toUpperCase(),
       style: { fill: "#6b7280", fontSize: 16 },
     });
   }
@@ -110,19 +110,19 @@ const renderCustomNode = ({ nodeDatum }) => {
   }
   if (nodeDatum.attributes?.hon_tu) {
     lines.push({
-      text: nodeDatum.attributes.hon_tu,
+      text: nodeDatum.attributes.hon_tu.toUpperCase(),
       style: { fill: "#6b7280", fontSize: 16 },
     });
   }
 
-  const totalHeight = lines.length * 20 + 40;
+  const totalHeight = lines.length * 18 + 30;
 
   return (
     <g transform={`translate(0, -${totalHeight / 2})`}>
       <rect
-        width="200"
+        width="280"
         height={totalHeight}
-        x="-100"
+        x="-150"
         y={-totalHeight / 2}
         fill={fillColor}
         stroke="#444"
@@ -134,8 +134,10 @@ const renderCustomNode = ({ nodeDatum }) => {
           key={i}
           fill={line.style.fill}
           x="0"
-          y={-totalHeight / 2 + 25 + i * 20}
+          y={-totalHeight / 2 + 20 + i * 18}
           textAnchor="middle"
+          dominantBaseline="middle"
+          alignmentBaseline="middle"
           fontSize={line.style.fontSize}
           fontStyle={line.style.fontStyle || "normal"}
           letterSpacing="0.3px"
@@ -464,7 +466,7 @@ export default function SoDoPhaHeTrinhBaToc() {
           zoomable={true}
           shouldCollapseNeighborNodes={false}
           separation={{ siblings: 4, nonSiblings: 5 }}
-          nodeSize={{ x: 60, y: 240 }}
+          nodeSize={{ x: 80, y: 240 }}
           renderCustomNodeElement={renderCustomNode}
         />
       </div>
