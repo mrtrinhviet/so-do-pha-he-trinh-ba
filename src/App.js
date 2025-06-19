@@ -336,7 +336,9 @@ export default function SoDoPhaHeTrinhBaToc() {
             </li>
             <li style={{ marginBottom: 10 }}>
               <b>
-                "CON NGƯỜI SINH TRƯỞNG BỞI ĐÂU,GỐC LÀ TIÊN TỔ-ƠN SÂU RÕ RÀNG…"
+                "CON NGƯỜI SINH TRƯỞNG BỞI ĐÂU,
+                <br />
+                GỐC LÀ TIÊN TỔ - ƠN SÂU RÕ RÀNG…"
               </b>
             </li>
             <li style={{ marginBottom: 10 }}>
