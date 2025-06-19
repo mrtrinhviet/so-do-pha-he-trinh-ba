@@ -31,187 +31,118 @@ const renderCustomNode = ({ nodeDatum }) => {
   ];
   const fillColor = colorByDoi[(doi - 1) % colorByDoi.length] || "#fef3c7";
 
+  const lines = [];
+
+  if (nodeDatum.attributes?.đời) {
+    lines.push({
+      text: `Đời Thứ ${nodeDatum.attributes.đời}`,
+      style: { fill: "#1f2937", fontSize: 15 },
+    });
+  }
+  if (nodeDatum.attributes?.vai_tro) {
+    lines.push({
+      text: nodeDatum.attributes.vai_tro,
+      style: { fill: "#111827", fontSize: 15, fontStyle: "italic" },
+    });
+  }
+  lines.push({
+    text: nodeDatum.name.toUpperCase(),
+    style: { fill: "#000", fontSize: 16 },
+  });
+
+  if (nodeDatum.attributes?.ten_that) {
+    lines.push({
+      text: nodeDatum.attributes.ten_that,
+      style: { fill: "#6b7280", fontSize: 16 },
+    });
+  }
+  if (nodeDatum.attributes?.chuc_vu) {
+    lines.push({
+      text: nodeDatum.attributes.chuc_vu,
+      style: { fill: "#1e3a8a", fontSize: 14 },
+    });
+  }
+  if (nodeDatum.attributes?.nam_sinh) {
+    const text =
+      `Sinh: ${nodeDatum.attributes.nam_sinh}` +
+      (nodeDatum.attributes?.nam_mat
+        ? ` - Mất: ${nodeDatum.attributes.nam_mat}`
+        : "");
+    lines.push({ text, style: { fill: "#374151", fontSize: 14 } });
+  }
+  if (nodeDatum.attributes?.ngay_ky) {
+    lines.push({
+      text: `Ngày kỵ: ${nodeDatum.attributes.ngay_ky}`,
+      style: { fill: "#6b7280", fontSize: 14 },
+    });
+  }
+  if (nodeDatum.attributes?.vai_tro_1) {
+    lines.push({
+      text: nodeDatum.attributes.vai_tro_1,
+      style: { fill: "#111827", fontSize: 15, fontStyle: "italic" },
+    });
+  }
+  if (nodeDatum.attributes?.hon_the) {
+    lines.push({
+      text: nodeDatum.attributes.hon_the,
+      style: { fill: "#6b7280", fontSize: 16 },
+    });
+  }
+  if (nodeDatum.attributes?.hon_the_1) {
+    lines.push({
+      text: nodeDatum.attributes.hon_the_1,
+      style: { fill: "#6b7280", fontSize: 16 },
+    });
+  }
+  if (nodeDatum.attributes?.nam_sinh_1) {
+    const text =
+      `Sinh: ${nodeDatum.attributes.nam_sinh_1}` +
+      (nodeDatum.attributes?.nam_mat_1
+        ? ` - Mất: ${nodeDatum.attributes.nam_mat_1}`
+        : "");
+    lines.push({ text, style: { fill: "#374151", fontSize: 14 } });
+  }
+  if (nodeDatum.attributes?.ngay_ky_1) {
+    lines.push({
+      text: `Ngày kỵ: ${nodeDatum.attributes.ngay_ky_1}`,
+      style: { fill: "#6b7280", fontSize: 14 },
+    });
+  }
+  if (nodeDatum.attributes?.hon_tu) {
+    lines.push({
+      text: nodeDatum.attributes.hon_tu,
+      style: { fill: "#6b7280", fontSize: 16 },
+    });
+  }
+
+  const totalHeight = lines.length * 20 + 40;
+
   return (
-    <g transform="translate(0, -20)">
+    <g transform={`translate(0, -${totalHeight / 2})`}>
       <rect
         width="200"
-        height="220"
+        height={totalHeight}
         x="-100"
-        y="-95"
+        y={-totalHeight / 2}
         fill={fillColor}
         stroke="#444"
         strokeWidth="2"
         rx="10"
       />
-
-      {nodeDatum.attributes?.đời && (
+      {lines.map((line, i) => (
         <text
-          fill="#1f2937"
+          key={i}
+          fill={line.style.fill}
           x="0"
-          y="-70"
+          y={-totalHeight / 2 + 25 + i * 20}
           textAnchor="middle"
-          fontSize="15"
-          letterSpacing="0.5px"
-        >
-          Đời Thứ {nodeDatum.attributes.đời}
-        </text>
-      )}
-
-      {(nodeDatum.attributes?.vai_tro || nodeDatum.attributes?.chuc_vu) && (
-        <>
-          {nodeDatum.attributes?.vai_tro && (
-            <text
-              fill="#111827"
-              x="0"
-              y="-50"
-              textAnchor="middle"
-              fontSize="15"
-              letterSpacing="0.4px"
-              fontStyle="italic"
-            >
-              {nodeDatum.attributes.vai_tro}
-            </text>
-          )}
-        </>
-      )}
-
-      <text
-        fill="#000000"
-        x="0"
-        y="-30"
-        textAnchor="middle"
-        fontSize="20"
-        letterSpacing="0.5px"
-      >
-        {nodeDatum.name}
-      </text>
-      {nodeDatum.attributes?.ten_that && (
-        <text
-          fill="#6b7280"
-          x="0"
-          y="-10"
-          textAnchor="middle"
-          fontSize="16"
+          fontSize={line.style.fontSize}
+          fontStyle={line.style.fontStyle || "normal"}
           letterSpacing="0.3px"
         >
-          {nodeDatum.attributes.ten_that}
+          {line.text}
         </text>
-      )}
-      {nodeDatum.attributes?.chuc_vu && (
-        <text
-          fill="#1e3a8a"
-          x="0"
-          y="-10"
-          textAnchor="middle"
-          fontSize="14"
-          letterSpacing="0.4px"
-        >
-          {nodeDatum.attributes.chuc_vu}
-        </text>
-      )}
-      {nodeDatum.attributes?.nam_sinh && (
-        <text
-          fill="#374151"
-          x="0"
-          y="10"
-          textAnchor="middle"
-          fontSize="14"
-          letterSpacing="0.3px"
-        >
-          Sinh: {nodeDatum.attributes.nam_sinh}{" "}
-          {nodeDatum.attributes?.nam_mat
-            ? `- Mất: ${nodeDatum.attributes.nam_mat}`
-            : ""}
-        </text>
-      )}
-      {nodeDatum.attributes?.ngay_ky && (
-        <text
-          fill="#6b7280"
-          x="0"
-          y="30"
-          textAnchor="middle"
-          fontSize="14"
-          letterSpacing="0.3px"
-        >
-          Ngày kỵ: {nodeDatum.attributes.ngay_ky}
-        </text>
-      )}
-      {nodeDatum.attributes?.vai_tro_1 && (
-        <text
-          fill="#111827"
-          x="0"
-          y="50"
-          textAnchor="middle"
-          fontSize="15"
-          letterSpacing="0.4px"
-          fontStyle="italic"
-        >
-          {nodeDatum.attributes.vai_tro_1}
-        </text>
-      )}
-      {nodeDatum.attributes?.hon_the && (
-        <text
-          fill="#6b7280"
-          x="0"
-          y="70"
-          textAnchor="middle"
-          fontSize="16"
-          letterSpacing="0.3px"
-        >
-          {nodeDatum.attributes.hon_the}
-        </text>
-      )}
-      {nodeDatum.attributes?.hon_the_1 && (
-        <text
-          fill="#6b7280"
-          x="0"
-          y="90"
-          textAnchor="middle"
-          fontSize="16"
-          letterSpacing="0.3px"
-        >
-          {nodeDatum.attributes.hon_the_1}
-        </text>
-      )}
-      {nodeDatum.attributes?.nam_sinh_1 && (
-        <text
-          fill="#374151"
-          x="0"
-          y="90"
-          textAnchor="middle"
-          fontSize="14"
-          letterSpacing="0.3px"
-        >
-          Sinh: {nodeDatum.attributes.nam_sinh_1}{" "}
-          {nodeDatum.attributes?.nam_mat_1
-            ? `- Mất: ${nodeDatum.attributes.nam_mat_1}`
-            : ""}
-        </text>
-      )}
-      {nodeDatum.attributes?.ngay_ky_1 && (
-        <text
-          fill="#6b7280"
-          x="0"
-          y="110"
-          textAnchor="middle"
-          fontSize="14"
-          letterSpacing="0.3px"
-        >
-          Ngày kỵ: {nodeDatum.attributes.ngay_ky_1}
-        </text>
-      )}
-      {nodeDatum.attributes?.hon_tu && (
-        <text
-          fill="#6b7280"
-          x="0"
-          y="70"
-          textAnchor="middle"
-          fontSize="16"
-          letterSpacing="0.3px"
-        >
-          {nodeDatum.attributes.hon_tu}
-        </text>
-      )}
+      ))}
     </g>
   );
 };
@@ -251,9 +182,22 @@ const downloadPDF = async (ref, paperSize = "a0", filteredTreeData = null) => {
   html2canvas(ref.current, { useCORS: true }).then((canvas) => {
     const imgData = canvas.toDataURL("image/png");
     const pdf = new jsPDF("landscape", "pt", paperSize);
-    const width = pdf.internal.pageSize.getWidth();
-    const height = pdf.internal.pageSize.getHeight();
-    pdf.addImage(imgData, "PNG", 0, 0, width, height);
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+
+    const imgWidth = canvas.width;
+    const imgHeight = canvas.height;
+
+    // Tính tỷ lệ để giữ nguyên tỉ lệ ảnh
+    const ratio = Math.min(pageWidth / imgWidth, pageHeight / imgHeight);
+    const newWidth = imgWidth * ratio;
+    const newHeight = imgHeight * ratio;
+
+    // Tính toạ độ để căn giữa
+    const x = (pageWidth - newWidth) / 2;
+    const y = (pageHeight - newHeight) / 2;
+
+    pdf.addImage(imgData, "PNG", x, y, newWidth, newHeight);
     pdf.save("so-do-pha-he-trinh-ba.pdf");
 
     // Khôi phục lại kích thước cũ
@@ -262,28 +206,45 @@ const downloadPDF = async (ref, paperSize = "a0", filteredTreeData = null) => {
   });
 };
 
-const downloadImage = async (ref, filteredTreeData = null) => {
-  // Lưu lại kích thước cũ
-  const oldWidth = ref.current.style.width;
-  const oldHeight = ref.current.style.height;
+const downloadImage = async (ref) => {
+  if (!ref.current) return;
 
-  // Đặt kích thước lớn tạm thời để toàn bộ cây hiện ra
-  ref.current.style.width = "3000px";
-  ref.current.style.height = "4000px";
+  // 1. Clone node để render riêng không bị ảnh hưởng CSS layout gốc
+  const clone = ref.current.cloneNode(true);
+  const width = ref.current.scrollWidth;
+  const height = ref.current.scrollHeight;
 
+  clone.style.width = `${width}px`;
+  clone.style.height = `${height}px`;
+  clone.style.position = "absolute";
+  clone.style.top = "-9999px";
+  clone.style.left = "-9999px";
+  clone.style.overflow = "visible";
+
+  document.body.appendChild(clone);
+
+  // 2. Chờ DOM áp dụng
   await new Promise((resolve) => setTimeout(resolve, 500));
 
-  html2canvas(ref.current, { useCORS: true }).then((canvas) => {
-    const imgData = canvas.toDataURL("image/png");
-    const link = document.createElement("a");
-    link.href = imgData;
-    link.download = "so-do-pha-he-trinh-ba.png";
-    link.click();
-
-    // Khôi phục lại kích thước cũ
-    ref.current.style.width = oldWidth;
-    ref.current.style.height = oldHeight;
+  // 3. Render canvas với độ nét cao
+  const canvas = await html2canvas(clone, {
+    useCORS: true,
+    backgroundColor: null,
+    scale: 3, // tăng scale để nét hơn
+    scrollX: 0,
+    scrollY: 0,
+    windowWidth: width,
+    windowHeight: height,
   });
+
+  document.body.removeChild(clone);
+
+  // 4. Tải ảnh
+  const img = canvas.toDataURL("image/png");
+  const link = document.createElement("a");
+  link.href = img;
+  link.download = "so-do-pha-he-trinh-ba.png";
+  link.click();
 };
 
 export default function SoDoPhaHeTrinhBaToc() {
@@ -292,22 +253,22 @@ export default function SoDoPhaHeTrinhBaToc() {
   const [search, setSearch] = useState("");
   const [zoom, setZoom] = useState(1);
   const [infoExpanded, setInfoExpanded] = useState(true); // Thêm state cho expand/collapse
-
-  // Hàm lọc nhánh theo tên hoặc thuộc tính
-  const filterFn = (node) => {
-    if (!search.trim()) return true;
-    const lower = search.trim().toLowerCase();
-    if (node.name?.toLowerCase().includes(lower)) return true;
-    if (
-      node.attributes &&
-      Object.values(node.attributes).join(" ").toLowerCase().includes(lower)
-    )
-      return true;
-    return false;
-  };
-
+  // const [exporting, setExporting] = useState(false);
   // Dữ liệu đã lọc theo nhánh
   const filteredData = useMemo(() => {
+    // Hàm lọc nhánh theo tên hoặc thuộc tính
+    const filterFn = (node) => {
+      if (!search.trim()) return true;
+      const lower = search.trim().toLowerCase();
+      if (node.name?.toLowerCase().includes(lower)) return true;
+      if (
+        node.attributes &&
+        Object.values(node.attributes).join(" ").toLowerCase().includes(lower)
+      )
+        return true;
+      return false;
+    };
+
     if (!search.trim()) return treeData;
     const filtered = filterTree(treeData, filterFn);
     return filtered ? filtered : { name: "Không tìm thấy nhánh phù hợp" };
@@ -478,6 +439,11 @@ export default function SoDoPhaHeTrinhBaToc() {
         >
           Thu nhỏ -
         </button>
+        {/* {exporting && (
+          <span style={{ color: "#f59e0b", fontWeight: 500 }}>
+            🔄 Đang xử lý... Vui lòng chờ.
+          </span>
+        )} */}
       </div>
       <div
         ref={treeContainer}
@@ -498,7 +464,7 @@ export default function SoDoPhaHeTrinhBaToc() {
           zoomable={true}
           shouldCollapseNeighborNodes={false}
           separation={{ siblings: 4, nonSiblings: 5 }}
-          nodeSize={{ x: 60, y: 280 }}
+          nodeSize={{ x: 60, y: 220 }}
           renderCustomNodeElement={renderCustomNode}
         />
       </div>
