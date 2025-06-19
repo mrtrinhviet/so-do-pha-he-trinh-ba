@@ -1,0 +1,1222 @@
+{
+  "name": "Trịnh Công Thành",
+  "attributes": {
+    "đời": "Nhất",
+    "vai_tro": "Đức Đệ Nhất Thuỷ Tổ",
+    "dia_diem": "Làng Thượng Phúc, Xã Xuân Thượng, Huyện Xuân Trường, Tỉnh Nam Định"
+  },
+  "children": [
+    {
+      "name": "Trịnh Quang",
+      "attributes": {
+        "đời": "2",
+        "vai_tro": "Đức Đệ Nhị Thuỷ Tổ"
+      },
+      "children": [
+        {
+          "name": "Trịnh Công Hiển",
+          "attributes": {
+            "đời": "3",
+            "vai_tro": "Đức Ngài"
+          },
+          "children": [
+            {
+              "name": "Trịnh Phúc Cơ",
+              "attributes": {
+                "đời": "4",
+                "vai_tro": "Đức Ngài"
+              },
+              "children": [
+                {
+                  "name": "Trịnh Phúc Kiên",
+                  "attributes": {
+                    "đời": "5",
+                    "vai_tro": "Đức Ngài"
+                  },
+                  "children": [
+                    {
+                      "name": "Trịnh Phúc Thọ",
+                      "attributes": {
+                        "đời": "6",
+                        "vai_tro": "Đức Ngài"
+                      },
+                      "children": [
+                        {
+                          "name": "Trịnh Phúc Nhận",
+                          "attributes": {
+                            "đời": "7",
+                            "vai_tro": "Đức Ngài"
+                          },
+                          "children": [
+                            {
+                              "name": "Trịnh Phúc Tường",
+                              "attributes": {
+                                "đời": "8",
+                                "vai_tro": "Đức Ngài"
+                              },
+                              "children": [
+                                {
+                                  "name": "Trịnh Thông",
+                                  "attributes": {
+                                    "đời": "9",
+                                    "vai_tro": "Đức Ngài"
+                                  },
+                                  "children": [
+                                    {
+                                      "name": "Trịnh Huệ Đạo",
+                                      "attributes": {
+                                        "đời": "10",
+                                        "vai_tro": "Đức Thượng Thượng Tiên Tổ",
+                                        "nam_sinh": 1718,
+                                        "ngay_ky": "17/3"
+                                      },
+                                      "children": [
+                                        {
+                                          "name": "Trịnh Trường Khánh",
+                                          "attributes": {
+                                            "đời": "11",
+                                            "vai_tro": "Đức Thượng Tiên Tổ",
+                                            "nam_sinh": 1753
+                                          },
+                                          "children": [
+                                            {
+                                              "name": "Trịnh Khanh",
+                                              "attributes": {
+                                                "đời": "12",
+                                                "vai_tro": "Đức Thượng tổ",
+                                                "chuc_vu": "Tri Phủ Lý Nhân",
+                                                "nam_sinh": 1778
+                                              },
+                                              "children": [
+                                                {
+                                                  "name": "Trịnh Hữu Phần",
+                                                  "attributes": {
+                                                    "đời": "13",
+                                                    "vai_tro": "Đức Cao Cao Tổ",
+                                                    "nam_sinh": 1804
+                                                  },
+                                                  "children": [
+                                                    {
+                                                      "name": "Trịnh Bá Tường",
+                                                      "attributes": {
+                                                        "đời": "14",
+                                                        "vai_tro": "Đức Cao Tổ Khảo",
+                                                        "nam_sinh": 1815
+                                                      },
+                                                      "children": [
+                                                        {
+                                                          "name": "Trịnh Bá Bể",
+                                                          "attributes": {
+                                                            "đời": "15",
+                                                            "vai_tro": "Cụ Tằng Tổ Khảo"
+                                                          },
+                                                          "children": [
+                                                            {
+                                                              "name": "Trịnh Hữu Phấn",
+                                                              "attributes": {
+                                                                "đời": "16",
+                                                                "vai_tro": "Cụ"
+                                                              },
+                                                              "children": [
+                                                                {
+                                                                  "name": "Không có thông tin",
+                                                                  "attributes": {
+                                                                    "đời": "17"
+                                                                  },
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "Trịnh Hữu Ban",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "vai_tro": "Ông"
+                                                                      }
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "name": "Trịnh Tượng",
+                                              "attributes": {
+                                                "đời": "12",
+                                                "vai_tro": "Đức Thượng tổ",
+                                                "chuc_vu": "Phó Ty Nội Cạn",
+                                                "nam_sinh": 1781
+                                              },
+                                              "children": [
+                                                {
+                                                  "name": "Trịnh Hữu Vy",
+                                                  "attributes": {
+                                                    "đời": "13",
+                                                    "vai_tro": "Đức Cao Cao Tổ",
+                                                    "nam_sinh": 1807
+                                                  },
+                                                  "children": [
+                                                    {
+                                                      "name": "Trịnh Bá Chất",
+                                                      "attributes": {
+                                                        "đời": "14",
+                                                        "vai_tro": "Đức Cao Tổ Khảo",
+                                                        "nam_sinh": 1835
+                                                      },
+                                                      "children": [
+                                                        {
+                                                          "name": "Trịnh Bá Đại",
+                                                          "attributes": {
+                                                            "đời": "15",
+                                                            "vai_tro": "Cụ Tằng Tổ Khảo"
+                                                          },
+                                                          "children": [
+                                                            {
+                                                              "name": " Trịnh Bá Chử",
+                                                              "attributes": {
+                                                                "đời": "16",
+                                                                "vai_tro": "Cụ"
+                                                              }
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "name": "Trịnh Bá Thực",
+                                                          "attributes": {
+                                                            "đời": "15",
+                                                            "vai_tro": "Cụ Tằng Tổ Khảo"
+                                                          }
+                                                        },
+                                                        {
+                                                          "name": "Trịnh Bá Cường",
+                                                          "attributes": {
+                                                            "đời": "15",
+                                                            "vai_tro": "Cụ Tằng Tổ Khảo"
+                                                          },
+                                                          "children": [
+                                                            {
+                                                              "name": "Trịnh Bá Chẩn",
+                                                              "attributes": {
+                                                                "đời": "16",
+                                                                "vai_tro": "Cụ"
+                                                              }
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "name": "Trịnh Suý",
+                                              "attributes": {
+                                                "đời": "12",
+                                                "vai_tro": "Đức Thượng tổ",
+                                                "chuc_vu": "Tiên Tả Đội Vệ Uý",
+                                                "nam_sinh": 1784
+                                              },
+                                              "children": [
+                                                {
+                                                  "name": "Trịnh Bá Khoan",
+                                                  "attributes": {
+                                                    "đời": "13",
+                                                    "vai_tro": "Đức Cao Cao Tổ",
+                                                    "chuc_vu": "Án Liêu",
+                                                    "nam_sinh": 1811
+                                                  },
+                                                  "children": [
+                                                    {
+                                                      "name": "Trịnh Bá Thuộc",
+                                                      "attributes": {
+                                                        "đời": "14",
+                                                        "vai_tro": "Đức Cao Tổ Khảo",
+                                                        "nam_sinh": 1838,
+                                                        "ngay_ky": "13/3",
+                                                        "vai_tro_1": "Đức Cao Tổ Tỷ",
+                                                        "hon_the": "Huý Từ Ngọ"
+                                                      },
+                                                      "children": [
+                                                        {
+                                                          "name": "Trịnh Bá Am",
+                                                          "attributes": {
+                                                            "đời": "15",
+                                                            "vai_tro": "Cụ Tằng Tổ Khảo",
+                                                            "nam_sinh": 1860,
+                                                            "nam_mat": "19..",
+                                                            "ngay_ky": "13/Giêng",
+                                                            "vai_tro_1": "Cụ Tằng Tổ Tỷ",
+                                                            "hon_the": "Đinh Thị Nụ",
+                                                            "ngay_ky_1": "17/Giêng"
+                                                          },
+                                                          "children": [
+                                                            {
+                                                              "name": "Trịnh Thị Sen",
+                                                              "attributes": {
+                                                                "đời": "16",
+                                                                "vai_tro": "Cụ",
+                                                                "nam_sinh": 1882,
+                                                                "nam_mat": "19..",
+                                                                "vai_tro_1": "Cụ Ông",
+                                                                "hon_tu": "Nguyễn Đình Thăng"
+                                                              }
+                                                            },
+                                                            {
+                                                              "name": "Trịnh Bá Huynh",
+                                                              "attributes": {
+                                                                "đời": "16",
+                                                                "vai_tro": "Cụ",
+                                                                "nam_sinh": 1885,
+                                                                "nam_mat": 1941,
+                                                                "ngay_ky": "05/7",
+                                                                "vai_tro_1": "Cụ Bà",
+                                                                "hon_the": "Phạm Thị Tiêu",
+                                                                "nam_sinh_1": 1901,
+                                                                "nam_mat_1": 1980,
+                                                                "ngay_ky_1": "20/7"
+                                                              },
+                                                              "children": [
+                                                                {
+                                                                  "name": "Trịnh Bá Toan",
+                                                                  "attributes": {
+                                                                    "đời": "17",
+                                                                    "vai_tro": "Ông",
+                                                                    "nam_sinh": 1917,
+                                                                    "nam_mat": "19..",
+                                                                    "ngay_ky": "15/3"
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "name": "Trịnh Thị Hồng",
+                                                                  "attributes": {
+                                                                    "đời": "17",
+                                                                    "vai_tro": "Bà",
+                                                                    "nam_sinh": 1920,
+                                                                    "nam_mat": 1990,
+                                                                    "ngay_ky": "11/9",
+                                                                    "vai_tro_1": "Ông",
+                                                                    "hon_tu": "Phạm Văn Thuế"
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "name": "Trịnh Bá Huống",
+                                                                  "attributes": {
+                                                                    "đời": "17",
+                                                                    "vai_tro": "Ông",
+                                                                    "nam_sinh": 1922,
+                                                                    "nam_mat": 2010,
+                                                                    "ngay_ky": "13/6",
+                                                                    "hon_the": "Phạm Thị Hồng",
+                                                                    "vai_tro_1": "Bà",
+                                                                    "nam_sinh_1": 1924,
+                                                                    "nam_mat_1": 1995,
+                                                                    "ngay_ky_1": "11/8"
+                                                                  },
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "Trịnh Thị Hải",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1949,
+                                                                        "vai_tro_1": "Chồng",
+                                                                        "hon_tu": "Phạm Nguyên Hoành"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Thái Hậu",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1952,
+                                                                        "nam_mat": 2019,
+                                                                        "vai_tro_1": "Chồng",
+                                                                        "hon_tu": "Lương Minh Dụ"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Bá Chí Tâm",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1957,
+                                                                        "vai_tro_1": "Vợ",
+                                                                        "hon_the": "Nguyễn Lan Phương"
+                                                                      },
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "Trịnh Bá Minh Tiến",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1981,
+                                                                            "vai_tro_1": "Vợ",
+                                                                            "hon_the": "Nguyễn Thị Thuỷ (Đã ly hôn)"
+                                                                          },
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "Trịnh Bá Minh Quân",
+                                                                              "attributes": {
+                                                                                "đời": "20",
+                                                                                "nam_sinh": 2009
+                                                                              }
+                                                                            },
+                                                                            {
+                                                                              "name": "Trịnh Bá Xuân Phúc",
+                                                                              "attributes": {
+                                                                                "đời": "20",
+                                                                                "nam_sinh": 2018
+                                                                              }
+                                                                            }
+                                                                          ]
+                                                                        },
+                                                                        {
+                                                                          "name": "Trịnh Bá Chí Kiên",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1997
+                                                                          }
+                                                                        }
+                                                                      ]
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Kim Xuân",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1958,
+                                                                        "vai_tro_1": "Chồng",
+                                                                        "hon_tu": "Trịnh Văn Kiếm"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Bá Quốc Tuấn",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1961,
+                                                                        "nam_mat": 2019,
+                                                                        "vai_tro_1": "Vợ",
+                                                                        "hon_the": "Nguyễn Thị Sinh"
+                                                                      },
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "Trịnh Phương Linh",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1983,
+                                                                            "vai_tro_1": "Chồng",
+                                                                            "hon_the": "Nguyễn Quan Trọng"
+                                                                          }
+                                                                        }
+                                                                      ]
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Bá Tuấn Nghĩa",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1963,
+                                                                        "vai_tro_1": "Vợ",
+                                                                        "hon_the": "Phan Kim Phượng"
+                                                                      },
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "Trịnh Thị Thủy",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1989,
+                                                                            "vai_tro_1": "Chồng",
+                                                                            "hon_the": "Nguyễn Anh Tuấn"
+                                                                          }
+                                                                        },
+                                                                        {
+                                                                          "name": "Trịnh Ngân Hoa",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1999
+                                                                          }
+                                                                        }
+                                                                      ]
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Tuyết Lộ",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1966,
+                                                                        "vai_tro_1": "Chồng",
+                                                                        "hon_tu": "Nguyễn Văn Viết (Đã ly hôn)"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Bá Quốc Hùng",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1968,
+                                                                        "nam_mat": 2011,
+                                                                        "vai_tro_1": "Vợ",
+                                                                        "hon_the": "Phạm Thị Hương"
+                                                                      },
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "Trịnh Thanh Hằng",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1994
+                                                                          }
+                                                                        },
+                                                                        {
+                                                                          "name": "Trịnh Thanh Hiền",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1997
+                                                                          }
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "name": "Trịnh Bá Kiểm",
+                                                                  "attributes": {
+                                                                    "đời": "17",
+                                                                    "vai_tro": "Ông",
+                                                                    "nam_sinh": 1929,
+                                                                    "nam_mat": 2019,
+                                                                    "ngay_ky": "30/11",
+                                                                    "vai_tro_1": "Bà",
+                                                                    "nam_sinh_1": 1932,
+                                                                    "nam_mat_1": 2025,
+                                                                    "ngay_ky_1": "07/Giêng",
+                                                                    "hon_the": "Nguyễn Thị Mùi"
+                                                                  },
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "Trịnh Bá Chí Trung",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1956,
+                                                                        "vai_tro_1": "Vợ",
+                                                                        "hon_the": "Trần Thị Loan"
+                                                                      },
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "Trịnh Bá Quốc Việt",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1980,
+                                                                            "vai_tro_1": "Vợ",
+                                                                            "hon_the": "Phạm Thị Bình"
+                                                                          },
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "Trịnh Bảo Trâm",
+                                                                              "attributes": {
+                                                                                "đời": "20",
+                                                                                "nam_sinh": 2008
+                                                                              }
+                                                                            },
+                                                                            {
+                                                                              "name": "Trịnh Hạnh An",
+                                                                              "attributes": {
+                                                                                "đời": "20",
+                                                                                "nam_sinh": 2013
+                                                                              }
+                                                                            }
+                                                                          ]
+                                                                        },
+                                                                        {
+                                                                          "name": "Trịnh Bá Quốc Vượng",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1982,
+                                                                            "vai_tro_1": "Vợ",
+                                                                            "hon_the": "Trần Hồng Vân"
+                                                                          },
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "Trịnh Quỳnh Chi",
+                                                                              "attributes": {
+                                                                                "đời": "20",
+                                                                                "nam_sinh": 2013
+                                                                              }
+                                                                            },
+                                                                            {
+                                                                              "name": "Trịnh Bá Minh Khôi",
+                                                                              "attributes": {
+                                                                                "đời": "20",
+                                                                                "nam_sinh": 2019
+                                                                              }
+                                                                            }
+                                                                          ]
+                                                                        },
+                                                                        {
+                                                                          "name": "Trịnh Thị Ngọc Phượng",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1984,
+                                                                            "vai_tro_1": "Chồng",
+                                                                            "hon_tu": "Lương Ngọc Duy"
+                                                                          }
+                                                                        }
+                                                                      ]
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Bá Minh Chính",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1960,
+                                                                        "nam_mat": 2017,
+                                                                        "ngay_ky": "27/12",
+                                                                        "vai_tro_1": "Vợ",
+                                                                        "hon_the": "Trần Thị Thanh"
+                                                                      },
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "Trịnh Thị Thuý",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1986
+                                                                          }
+                                                                        },
+                                                                        {
+                                                                          "name": "Trịnh Bá Huy Đức",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1992
+                                                                          }
+                                                                        }
+                                                                      ]
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Thị Hương",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1962,
+                                                                        "vai_tro_1": "Chồng",
+                                                                        "hon_tu": "Trần Ngọc Lâm"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Bá Mai Nam",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1965,
+                                                                        "vai_tro_1": "Vợ",
+                                                                        "hon_the": "Cao Tố Quyên (Đã ly hôn)"
+                                                                      },
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "Trịnh Bá Hồng Sơn",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1988
+                                                                          }
+                                                                        },
+                                                                        {
+                                                                          "name": "Trịnh Thuý Hà",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1989,
+                                                                            "vai_tro_1": "Chồng",
+                                                                            "hon_tu": "Lê Văn Sỹ"
+                                                                          }
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "name": "Trịnh Bá Đạt",
+                                                                  "attributes": {
+                                                                    "đời": "17",
+                                                                    "vai_tro": "Ông",
+                                                                    "nam_sinh": 1932,
+                                                                    "nam_mat": 1950,
+                                                                    "ngay_ky": "01/3",
+                                                                    "vai_tro_1": "(Ông Mãnh)"
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "name": "Trịnh Thị Tính",
+                                                                  "attributes": {
+                                                                    "đời": "17",
+                                                                    "vai_tro": "Bà",
+                                                                    "nam_sinh": 1936,
+                                                                    "vai_tro_1": "Ông",
+                                                                    "hon_tu": "Bùi Ngọc Định"
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "name": "Trịnh Thị Miên",
+                                                                  "attributes": {
+                                                                    "đời": "17",
+                                                                    "vai_tro": "Bà",
+                                                                    "nam_sinh": 1939,
+                                                                    "nam_mat": 1999,
+                                                                    "ngay_ky": "11/4",
+                                                                    "vai_tro_1": "Ông",
+                                                                    "hon_tu": "Nguyễn Thế Chung"
+                                                                  }
+                                                                }
+                                                              ]
+                                                            },
+                                                            {
+                                                              "name": "Trịnh Bá San",
+                                                              "attributes": {
+                                                                "đời": "16",
+                                                                "vai_tro": "Cụ",
+                                                                "nam_sinh": 1888,
+                                                                "nam_mat": "19..",
+                                                                "ngay_ky": "18/9",
+                                                                "vai_tro_1": "Cụ Bà",
+                                                                "hon_the": "Phạm Thị Tơn",
+                                                                "ngay_ky_1": "02/Giêng"
+                                                              },
+                                                              "children": [
+                                                                {
+                                                                  "name": "Trịnh Bá Hoan",
+                                                                  "attributes": {
+                                                                    "đời": "17",
+                                                                    "vai_tro": "Ông",
+                                                                    "nam_sinh": 1914,
+                                                                    "nam_mat": 1992,
+                                                                    "ngay_ky": "14/11",
+                                                                    "hon_the": "Vũ Thị Gái",
+                                                                    "vai_tro_1": "Bà",
+                                                                    "ngay_ky_1": "15/7"
+                                                                  },
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "Trịnh Bá Nghênh",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1950,
+                                                                        "nam_mat": 1971,
+                                                                        "vai_tro": "Ông Mãnh"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Bá Đình Thảo",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1954,
+                                                                        "vai_tro_1": "Vợ",
+                                                                        "hon_the": "Đặng Thị Dum"
+                                                                      },
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "Trịnh Thị Thơ",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1976,
+                                                                            "nam_mat": 1996
+                                                                          }
+                                                                        },
+                                                                        {
+                                                                          "name": "Trịnh Thị Thanh",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1980,
+                                                                            "vai_tro_1": "Chồng",
+                                                                            "hon_the": "Phan Văn Soái"
+                                                                          }
+                                                                        },
+                                                                        {
+                                                                          "name": "Trịnh Bá Đình Thao",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1983,
+                                                                            "vai_tro_1": "Vợ",
+                                                                            "hon_tu": "Cao Thị Hồng"
+                                                                          },
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "Trịnh Hồng Anh",
+                                                                              "attributes": {
+                                                                                "đời": "20",
+                                                                                "nam_sinh": 2006
+                                                                              }
+                                                                            },
+                                                                            {
+                                                                              "name": "Trịnh Bá Nhật Long",
+                                                                              "attributes": {
+                                                                                "đời": "20",
+                                                                                "nam_sinh": 2009
+                                                                              }
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Thị Yên",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1956,
+                                                                        "vai_tro_1": "Chồng",
+                                                                        "hon_tu": "Vũ Văn Đang"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Thị Tuất",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1956,
+                                                                        "vai_tro_1": "Chồng",
+                                                                        "hon_the": "Mai Văn Xạ"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Thị Bé",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1963,
+                                                                        "vai_tro_1": "Mẹ đơn thân"
+                                                                      },
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "Trịnh Bá Cường",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1992,
+                                                                            "vai_tro_1": "Vợ",
+                                                                            "hon_the": "Bùi Thị Thuỷ"
+                                                                          },
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "Trịnh Kim Ngân",
+                                                                              "attributes": {
+                                                                                "đời": "20",
+                                                                                "nam_sinh": 2014
+                                                                              }
+                                                                            },
+                                                                            {
+                                                                              "name": "Trịnh Bá Hiểu Anh",
+                                                                              "attributes": {
+                                                                                "đời": "20",
+                                                                                "nam_sinh": 2016
+                                                                              }
+                                                                            }
+                                                                          ]
+                                                                        },
+                                                                        {
+                                                                          "name": "Trịnh Bá Hậu",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1994,
+                                                                            "vai_tro_1": "Vợ",
+                                                                            "hon_the": "Giàng Thị Mỷ"
+                                                                          },
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "Trịnh Vân Thuý",
+                                                                              "attributes": {
+                                                                                "đời": "20",
+                                                                                "nam_sinh": 2015
+                                                                              }
+                                                                            },
+                                                                            {
+                                                                              "name": "Trịnh Bảo Trâm",
+                                                                              "attributes": {
+                                                                                "đời": "20",
+                                                                                "nam_sinh": 2018
+                                                                              }
+                                                                            },
+                                                                            {
+                                                                              "name": "Trịnh Bảo Linh",
+                                                                              "attributes": {
+                                                                                "đời": "20",
+                                                                                "nam_sinh": 2020
+                                                                              }
+                                                                            },
+                                                                            {
+                                                                              "name": "Trịnh --",
+                                                                              "attributes": {
+                                                                                "đời": "20",
+                                                                                "nam_sinh": "20.."
+                                                                              }
+                                                                            }
+                                                                          ]
+                                                                        },
+                                                                        {
+                                                                          "name": "Trịnh Thị Ngọc",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 2005
+                                                                          }
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            },
+                                                            {
+                                                              "name": "Trịnh Bá Vịnh",
+                                                              "attributes": {
+                                                                "đời": "16",
+                                                                "vai_tro": "Cụ",
+                                                                "nam_sinh": 1891,
+                                                                "nam_mat": "19..",
+                                                                "ngay_ky": "24/9",
+                                                                "vai_tro_1": "Cụ Bà",
+                                                                "hon_the": "Vũ Thị Sại",
+                                                                "ngay_ky_1": "27/6"
+                                                              },
+                                                              "children": [
+                                                                {
+                                                                  "name": "Trịnh Thị Việt",
+                                                                  "attributes": {
+                                                                    "đời": "17",
+                                                                    "vai_tro": "Bà",
+                                                                    "nam_sinh": 1919,
+                                                                    "nam_mat": 2006,
+                                                                    "hon_tu": "Vũ Đức Trìu",
+                                                                    "vai_tro_1": "Ông"
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "name": "Trịnh Bá Phòng",
+                                                                  "attributes": {
+                                                                    "đời": "17",
+                                                                    "vai_tro": "Ông",
+                                                                    "nam_sinh": 1922,
+                                                                    "nam_mat": 2024,
+                                                                    "ngay_ky": "17/05",
+                                                                    "vai_tro_1": "Bà",
+                                                                    "hon_the": "Bà Cả: Đoàn Thị Thịnh",
+                                                                    "hon_the_1": "Bà Kế: Lê Thị Chính"
+                                                                  },
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "Trịnh Bá Dũng",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1946,
+                                                                        "vai_tro_1": "Vợ",
+                                                                        "hon_the": "Nguyễn Thị Oanh"
+                                                                      },
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "Trịnh Kim Tú",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1988,
+                                                                            "vai_tro_1": "Chồng",
+                                                                            "hon_the": "Nguyễn Quang Đạo"
+                                                                          }
+                                                                        },
+                                                                        {
+                                                                          "name": "Trịnh Anh Thư",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1991
+                                                                          }
+                                                                        }
+                                                                      ]
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Minh Loan",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1949,
+                                                                        "vai_tro_1": "Chồng",
+                                                                        "hon_the": "Nguyễn Quang Phiêu"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Bá Hoà Bình",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1951,
+                                                                        "nam_mat": 2006,
+                                                                        "vai_tro_1": "Vợ",
+                                                                        "hon_the": "Trương Thị Minh"
+                                                                      },
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "Trịnh Bá Minh Đức",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1997
+                                                                          }
+                                                                        },
+                                                                        {
+                                                                          "name": "Trịnh Kim Ngân",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1992,
+                                                                            "vai_tro_1": "Chồng",
+                                                                            "hon_tu": "Phạm Công Nhâm"
+                                                                          }
+                                                                        }
+                                                                      ]
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Ánh Nguyệt",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1957,
+                                                                        "vai_tro_1": "Chồng",
+                                                                        "hon_tu": "Nguyễn Đình Tuân"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Bá Quý Dương",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1959,
+                                                                        "vai_tro_1": "Vợ",
+                                                                        "hon_the": "Vợ cả: Phạm Hồng Hạnh",
+                                                                        "hon_the_1": "Vợ kế: Lưu Thu Thuỷ"
+                                                                      },
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "Trịnh Kim Tú",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1983,
+                                                                            "vai_tro_1": "Chồng",
+                                                                            "hon_the": "Nguyễn Duy Hưng"
+                                                                          }
+                                                                        },
+                                                                        {
+                                                                          "name": "Trịnh Bá Ngọc Tân",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1992
+                                                                          }
+                                                                        },
+                                                                        {
+                                                                          "name": "Trịnh Bá Minh Triết",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 2002
+                                                                          }
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "name": "Trịnh Bá Thiệp",
+                                                                  "attributes": {
+                                                                    "đời": "17",
+                                                                    "vai_tro": "Ông",
+                                                                    "nam_sinh": 1925,
+                                                                    "nam_mat": 2003,
+                                                                    "ngay_ky": "08/3",
+                                                                    "hon_the": "Vũ Thị Phượng",
+                                                                    "vai_tro_1": "Bà"
+                                                                  },
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "Trịnh Bá Việt",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1947,
+                                                                        "vai_tro_1": "Vợ",
+                                                                        "hon_the": "Nguyễn Hồng Trang"
+                                                                      },
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "Trịnh Quỳnh Trang",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1978,
+                                                                            "vai_tro_1": "Chồng",
+                                                                            "hon_the": "?"
+                                                                          }
+                                                                        },
+                                                                        {
+                                                                          "name": "Trịnh Bá Việt Đức",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1984,
+                                                                            "vai_tro_1": "Vợ",
+                                                                            "hon_the": "Phạm Thu Hiền"
+                                                                          },
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "Trịnh Bá An Khánh",
+                                                                              "attributes": {
+                                                                                "đời": "20",
+                                                                                "nam_sinh": 2022
+                                                                              }
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Kim Anh",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1957,
+                                                                        "vai_tro_1": "Chồng",
+                                                                        "hon_the": "Đặng Mạnh Hùng"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Bá Chấn Nam",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1959,
+                                                                        "vai_tro_1": "Vợ",
+                                                                        "hon_the": "Trần Tiểu Hoa"
+                                                                      },
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "Trịnh Ngọc Anh",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1989,
+                                                                            "vai_tro_1": "Chồng",
+                                                                            "hon_the": "?"
+                                                                          }
+                                                                        },
+                                                                        {
+                                                                          "name": "Trịnh Bá Minh Quang",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1999
+                                                                          }
+                                                                        }
+                                                                      ]
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Bá Minh Châu",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1961,
+                                                                        "vai_tro_1": "Vợ",
+                                                                        "hon_the": "Vợ cả: Vương Sơn Hải",
+                                                                        "hon_the_1": "Vợ kế: Nguyễn Hoàng Thanh"
+                                                                      },
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "Trịnh Thanh Hà",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1988,
+                                                                            "vai_tro_1": "Chồng",
+                                                                            "hon_the": "?"
+                                                                          }
+                                                                        },
+                                                                        {
+                                                                          "name": "Trịnh Quỳnh Anh",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 1991,
+                                                                            "vai_tro_1": "Chồng",
+                                                                            "hon_the": "?"
+                                                                          }
+                                                                        },
+                                                                        {
+                                                                          "name": "Trịnh Bá Gia Khánh",
+                                                                          "attributes": {
+                                                                            "đời": "19",
+                                                                            "nam_sinh": 2005,
+                                                                            "vai_tro_1": "Vợ",
+                                                                            "hon_the": "?"
+                                                                          }
+                                                                        }
+                                                                      ]
+                                                                    },
+                                                                    {
+                                                                      "name": "Trịnh Hồng Minh",
+                                                                      "attributes": {
+                                                                        "đời": "18",
+                                                                        "nam_sinh": 1963,
+                                                                        "vai_tro_1": "Chồng",
+                                                                        "hon_tu": "Lê Hồng Thư"
+                                                                      }
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "name": "Trịnh Kim Vinh",
+                                                                  "attributes": {
+                                                                    "đời": "17",
+                                                                    "vai_tro": "Bà",
+                                                                    "nam_sinh": 1930,
+                                                                    "hon_tu": "Lưu Hữu Phước",
+                                                                    "vai_tro_1": "Ông",
+                                                                    "ten_that": "Tên thật: Huỳnh Minh Siêng"
+                                                                  }
+                                                                }
+                                                              ]
+                                                            },
+                                                            {
+                                                              "name": "Trịnh Bá Ký",
+                                                              "attributes": {
+                                                                "đời": "16",
+                                                                "vai_tro": "Cụ",
+                                                                "nam_sinh": 1894,
+                                                                "nam_mat": 1945,
+                                                                "ngay_ky": "?",
+                                                                "vai_tro_1": "Cụ Bà",
+                                                                "hon_the": "Đinh Thị Viên",
+                                                                "ngay_ky_1": "?"
+                                                              }
+                                                            },
+                                                            {
+                                                              "name": "Trịnh Thị Út",
+                                                              "attributes": {
+                                                                "đời": "16",
+                                                                "vai_tro": "Cụ",
+                                                                "nam_sinh": 1897,
+                                                                "nam_mat": 1945,
+                                                                "ngay_ky": "?",
+                                                                "vai_tro_1": "Cụ Ông",
+                                                                "hon_the": "Nho"
+                                                              }
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "name": "Trịnh Ích",
+                                              "attributes": {
+                                                "đời": "12",
+                                                "vai_tro": "Đức Thượng tổ",
+                                                "chuc_vu": "Tri Phủ Nông Cống",
+                                                "nam_sinh": 1787
+                                              },
+                                              "children": [
+                                                {
+                                                  "name": "Trịnh Nhân Chiến",
+                                                  "attributes": {
+                                                    "đời": "13",
+                                                    "vai_tro": "Đức Cao Cao Tổ",
+                                                    "nam_sinh": 1814
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
