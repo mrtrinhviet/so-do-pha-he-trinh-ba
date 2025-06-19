@@ -464,7 +464,7 @@ export default function SoDoPhaHeTrinhBaToc() {
           zoomable={true}
           shouldCollapseNeighborNodes={false}
           separation={{ siblings: 4, nonSiblings: 5 }}
-          nodeSize={{ x: 60, y: 220 }}
+          nodeSize={{ x: 60, y: 240 }}
           renderCustomNodeElement={renderCustomNode}
         />
       </div>
