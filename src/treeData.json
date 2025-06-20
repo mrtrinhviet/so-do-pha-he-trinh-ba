@@ -395,6 +395,7 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1961,
                                                                         "nam_mat": 2019,
+                                                                        "ngay_ky": "29/5",
                                                                         "vai_tro_1": "Vợ",
                                                                         "hon_the": "Nguyễn Thị Sinh"
                                                                       },
@@ -420,7 +421,7 @@
                                                                       },
                                                                       "children": [
                                                                         {
-                                                                          "name": "Trịnh Thị Thủy",
+                                                                          "name": "Trịnh Thanh Thủy",
                                                                           "attributes": {
                                                                             "đời": "19",
                                                                             "nam_sinh": 1989,
