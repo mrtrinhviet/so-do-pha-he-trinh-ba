@@ -132,16 +132,17 @@ const renderCustomNode = ({ nodeDatum }) => {
       {lines.map((line, i) => (
         <text
           key={i}
-          fill={line.style.fill}
           x="0"
           y={-totalHeight / 2 + 20 + i * 18}
           textAnchor="middle"
-          dominantBaseline="middle"
-          alignmentBaseline="middle"
+          dominantBaseline="central"
+          alignmentBaseline="central"
+          fill={line.style.fill}
           fontSize={line.style.fontSize}
           fontStyle={line.style.fontStyle || "normal"}
           letterSpacing="0.3px"
         >
+          {" "}
           {line.text}
         </text>
       ))}
