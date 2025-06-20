@@ -142,7 +142,6 @@ const renderCustomNode = ({ nodeDatum }) => {
           fontStyle={line.style.fontStyle || "normal"}
           letterSpacing="0.3px"
         >
-          {" "}
           {line.text}
         </text>
       ))}
@@ -170,43 +169,218 @@ const PAPER_SIZES = [
   { label: "A4 (chuẩn)", value: "a4" },
 ];
 
-const downloadPDF = async (ref, paperSize = "a0", filteredTreeData = null) => {
-  // Lưu lại kích thước cũ
+const generatePDFCanvas = async (ref, scale = 2, setZoom) => {
   const oldWidth = ref.current.style.width;
   const oldHeight = ref.current.style.height;
 
-  // Đặt kích thước lớn tạm thời để toàn bộ cây hiện ra (ví dụ 4000x3000px)
-  ref.current.style.width = "4000px";
-  ref.current.style.height = "4000px";
+  const svg = ref.current.querySelector("svg");
+  if (!svg) return null;
 
-  // Đợi cây vẽ lại (nếu cần)
+  const bbox = svg.getBBox();
+  const svgWidth = bbox.x + bbox.width + 40;
+  const svgHeight = bbox.y + bbox.height + 40;
+
+  ref.current.style.width = `${svgWidth}px`;
+  ref.current.style.height = `${svgHeight}px`;
+  svg.setAttribute("width", svgWidth);
+  svg.setAttribute("height", svgHeight);
+
   await new Promise((resolve) => setTimeout(resolve, 500));
 
-  html2canvas(ref.current, { useCORS: true }).then((canvas) => {
-    const imgData = canvas.toDataURL("image/png");
-    const pdf = new jsPDF("landscape", "pt", paperSize);
-    const pageWidth = pdf.internal.pageSize.getWidth();
-    const pageHeight = pdf.internal.pageSize.getHeight();
+  const canvas = await html2canvas(ref.current, { useCORS: true, scale });
+
+  // Khôi phục lại kích thước cũ
+  ref.current.style.width = oldWidth || "";
+  ref.current.style.height = oldHeight || "";
+  svg.removeAttribute("width");
+  svg.removeAttribute("height");
+
+  // Trigger lại render nếu cần
+  if (typeof setZoom === "function") {
+    setZoom((z) => z + 0.0001); // Thay đổi rất nhỏ để React-D3-Tree render lại
+  }
+
+  return canvas;
+};
+
+const previewPDF = async (ref, paperSize = "a4", setExporting, setZoom) => {
+  if (setExporting) setExporting(true);
+  try {
+    const scale = 2;
+    const canvas = await generatePDFCanvas(ref, scale, setZoom);
 
     const imgWidth = canvas.width;
     const imgHeight = canvas.height;
 
-    // Tính tỷ lệ để giữ nguyên tỉ lệ ảnh
-    const ratio = Math.min(pageWidth / imgWidth, pageHeight / imgHeight);
-    const newWidth = imgWidth * ratio;
-    const newHeight = imgHeight * ratio;
+    const pdf = new jsPDF("landscape", "pt", paperSize);
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
 
-    // Tính toạ độ để căn giữa
-    const x = (pageWidth - newWidth) / 2;
-    const y = (pageHeight - newHeight) / 2;
+    const ratio = 96 / 72;
+    const pageWidthPx = pageWidth * ratio;
+    const pageHeightPx = pageHeight * ratio;
 
-    pdf.addImage(imgData, "PNG", x, y, newWidth, newHeight);
+    const cols = Math.ceil(imgWidth / pageWidthPx);
+    const rows = Math.ceil(imgHeight / pageHeightPx);
+
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
+        const sx = col * pageWidthPx;
+        const sy = row * pageHeightPx;
+        const sWidth = Math.min(pageWidthPx, imgWidth - sx);
+        const sHeight = Math.min(pageHeightPx, imgHeight - sy);
+
+        const pageCanvas = document.createElement("canvas");
+        pageCanvas.width = sWidth;
+        pageCanvas.height = sHeight;
+        const ctx = pageCanvas.getContext("2d");
+        ctx.drawImage(canvas, sx, sy, sWidth, sHeight, 0, 0, sWidth, sHeight);
+
+        // Kiểm tra trang trống
+        const imageData = ctx.getImageData(0, 0, sWidth, sHeight).data;
+        let hasContent = false;
+        for (let i = 0; i < imageData.length; i += 4) {
+          if (
+            imageData[i] !== 255 ||
+            imageData[i + 1] !== 255 ||
+            imageData[i + 2] !== 255 ||
+            imageData[i + 3] !== 255
+          ) {
+            hasContent = true;
+            break;
+          }
+        }
+        if (!hasContent) continue;
+
+        const scaleW = pageWidth / sWidth;
+        const scaleH = pageHeight / sHeight;
+        const scaleRatio = Math.min(scaleW, scaleH, 1);
+
+        const drawWidth = sWidth * scaleRatio;
+        const drawHeight = sHeight * scaleRatio;
+        const offsetX = (pageWidth - drawWidth) / 2;
+        const offsetY = (pageHeight - drawHeight) / 2;
+
+        const pageImg = pageCanvas.toDataURL("image/png");
+        if (row > 0 || col > 0) pdf.addPage();
+
+        pdf.setFillColor(255, 255, 255);
+        pdf.rect(0, 0, pageWidth, pageHeight, "F");
+
+        pdf.addImage(pageImg, "PNG", offsetX, offsetY, drawWidth, drawHeight);
+      }
+    }
+
+    const blob = await pdf.output("blob");
+    const blobUrl = URL.createObjectURL(blob);
+
+    const isMobile = /iPhone|iPad|Android|Mobile/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = "so-do-pha-he-trinh-ba.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      alert(
+        "PDF đã được tạo và tải về. Vui lòng mở file bằng ứng dụng đọc PDF trên thiết bị của bạn."
+      );
+    } else {
+      const previewWindow = window.open();
+      if (previewWindow) {
+        previewWindow.document.write(`
+          <html><head><title>Preview PDF</title></head>
+          <body style='margin:0'>
+            <iframe src='${blobUrl}' style='width:100vw; height:100vh; border:none'></iframe>
+          </body></html>
+        `);
+      }
+    }
+  } catch (err) {
+    alert("Có lỗi khi xuất PDF. Vui lòng thử lại!");
+  } finally {
+    if (setExporting) setExporting(false);
+  }
+};
+
+const downloadPDF = async (ref, paperSize = "a4", setExporting, setZoom) => {
+  if (setExporting) setExporting(true);
+  try {
+    const scale = 2;
+    const canvas = await generatePDFCanvas(ref, scale, setZoom);
+    const imgWidth = canvas.width;
+    const imgHeight = canvas.height;
+
+    const pdf = new jsPDF("landscape", "pt", paperSize);
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+
+    // Chuyển đổi đơn vị pt của PDF sang px (96dpi màn hình / 72dpi PDF)
+    const ratio = 96 / 72;
+    const pageWidthPx = pageWidth * ratio;
+    const pageHeightPx = pageHeight * ratio;
+
+    const cols = Math.ceil(imgWidth / pageWidthPx);
+    const rows = Math.ceil(imgHeight / pageHeightPx);
+
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
+        const sx = col * pageWidthPx;
+        const sy = row * pageHeightPx;
+        const sWidth = Math.min(pageWidthPx, imgWidth - sx);
+        const sHeight = Math.min(pageHeightPx, imgHeight - sy);
+
+        // Tạo canvas nhỏ cho từng trang
+        const pageCanvas = document.createElement("canvas");
+        pageCanvas.width = sWidth;
+        pageCanvas.height = sHeight;
+        const ctx = pageCanvas.getContext("2d");
+        ctx.drawImage(canvas, sx, sy, sWidth, sHeight, 0, 0, sWidth, sHeight);
+
+        // Kiểm tra trang trống
+        const imageData = ctx.getImageData(0, 0, sWidth, sHeight).data;
+        let hasContent = false;
+        for (let i = 0; i < imageData.length; i += 4) {
+          if (
+            imageData[i] !== 255 ||
+            imageData[i + 1] !== 255 ||
+            imageData[i + 2] !== 255 ||
+            imageData[i + 3] !== 255
+          ) {
+            hasContent = true;
+            break;
+          }
+        }
+        if (!hasContent) continue;
+
+        // Tính tỷ lệ scale để vừa chiều rộng hoặc chiều cao, giữ nguyên tỷ lệ gốc
+        const scaleW = pageWidth / sWidth;
+        const scaleH = pageHeight / sHeight;
+        const scaleRatio = Math.min(scaleW, scaleH, 1);
+
+        const drawWidth = sWidth * scaleRatio;
+        const drawHeight = sHeight * scaleRatio;
+        const offsetX = (pageWidth - drawWidth) / 2;
+        const offsetY = (pageHeight - drawHeight) / 2;
+
+        const pageImg = pageCanvas.toDataURL("image/png");
+        if (row > 0 || col > 0) pdf.addPage();
+
+        // Tô nền trắng cho trang PDF trước khi vẽ ảnh (tránh bị trong suốt)
+        pdf.setFillColor(255, 255, 255);
+        pdf.rect(0, 0, pageWidth, pageHeight, "F");
+
+        pdf.addImage(pageImg, "PNG", offsetX, offsetY, drawWidth, drawHeight);
+      }
+    }
+
     pdf.save("so-do-pha-he-trinh-ba.pdf");
-
-    // Khôi phục lại kích thước cũ
-    ref.current.style.width = oldWidth;
-    ref.current.style.height = oldHeight;
-  });
+  } catch (err) {
+    alert("Có lỗi khi xuất PDF. Vui lòng thử lại!");
+  } finally {
+    if (setExporting) setExporting(false);
+  }
 };
 
 const downloadImage = async (ref) => {
@@ -256,7 +430,8 @@ export default function SoDoPhaHeTrinhBaToc() {
   const [search, setSearch] = useState("");
   const [zoom, setZoom] = useState(1);
   const [infoExpanded, setInfoExpanded] = useState(true); // Thêm state cho expand/collapse
-  // const [exporting, setExporting] = useState(false);
+  const [exportingPreview, setExportingPreview] = useState(false);
+  const [exportingDownload, setExportingDownload] = useState(false);
   // Dữ liệu đã lọc theo nhánh
   const filteredData = useMemo(() => {
     // Hàm lọc nhánh theo tên hoặc thuộc tính
@@ -366,7 +541,7 @@ export default function SoDoPhaHeTrinhBaToc() {
           style={{
             padding: "6px 12px",
             borderRadius: 4,
-            marginRight: 16,
+            margin: "0 16px ",
             border: "1px solid #ccc",
             minWidth: 220,
           }}
@@ -388,17 +563,40 @@ export default function SoDoPhaHeTrinhBaToc() {
         <button
           style={{
             padding: "8px 20px",
-            background: "#f59e0b",
+            background: exportingPreview ? "#fbbf24" : "#f59e0b",
             color: "#fff",
             border: "none",
             borderRadius: 6,
             fontWeight: 600,
-            cursor: "pointer",
+            cursor: exportingPreview ? "not-allowed" : "pointer",
             marginRight: 8,
+            opacity: exportingPreview ? 0.7 : 1,
           }}
-          onClick={() => downloadPDF(treeContainer, paperSize)}
+          disabled={exportingPreview}
+          onClick={() =>
+            previewPDF(treeContainer, paperSize, setExportingPreview, setZoom)
+          }
         >
-          Xuất PDF
+          {exportingPreview ? "Đang xử lý..." : "Xem trước PDF"}
+        </button>
+        <button
+          style={{
+            padding: "8px 20px",
+            background: exportingDownload ? "#fbbf24" : "#f59e0b",
+            color: "#fff",
+            border: "none",
+            borderRadius: 6,
+            fontWeight: 600,
+            cursor: exportingDownload ? "not-allowed" : "pointer",
+            marginRight: 8,
+            opacity: exportingDownload ? 0.7 : 1,
+          }}
+          disabled={exportingDownload}
+          onClick={() =>
+            downloadPDF(treeContainer, paperSize, setExportingDownload, setZoom)
+          }
+        >
+          {exportingDownload ? "Đang xử lý..." : "Xuất PDF"}
         </button>
         <button
           style={{
