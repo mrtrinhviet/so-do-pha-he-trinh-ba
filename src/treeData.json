@@ -3,14 +3,16 @@
   "attributes": {
     "đời": "Nhất",
     "vai_tro": "Đức Đệ Nhất Thuỷ Tổ",
-    "dia_diem": "Làng Thượng Phúc, Xã Xuân Thượng, Huyện Xuân Trường, Tỉnh Nam Định"
+    "hon_phoi": "Trần Thị Ngoạn",
+    "vai_tro_1": "Đức Thuỷ Tổ Tỷ"
   },
   "children": [
     {
       "name": "Trịnh Quang",
       "attributes": {
         "đời": "2",
-        "vai_tro": "Đức Đệ Nhị Thuỷ Tổ"
+        "vai_tro": "Đức Ngài",
+        "chuc_vu": "Hiệu Tảo Sinh Tiên Sư-Uy Minh Linh Thông-Linh Ứng Đại Vương-Thượng Đẳng Phúc Thần"
       },
       "children": [
         {
@@ -239,7 +241,7 @@
                                                         "nam_sinh": 1838,
                                                         "ngay_ky": "13/3",
                                                         "vai_tro_1": "Đức Cao Tổ Tỷ",
-                                                        "hon_the": "Huý Từ Ngọ"
+                                                        "hon_phoi": "Huý Từ Ngọ"
                                                       },
                                                       "children": [
                                                         {
@@ -251,7 +253,7 @@
                                                             "nam_mat": "19..",
                                                             "ngay_ky": "13/Giêng",
                                                             "vai_tro_1": "Cụ Tằng Tổ Tỷ",
-                                                            "hon_the": "Đinh Thị Nụ",
+                                                            "hon_phoi": "Đinh Thị Nụ",
                                                             "ngay_ky_1": "17/Giêng"
                                                           },
                                                           "children": [
@@ -263,7 +265,7 @@
                                                                 "nam_sinh": 1882,
                                                                 "nam_mat": "19..",
                                                                 "vai_tro_1": "Cụ Ông",
-                                                                "hon_tu": "Nguyễn Đình Thăng"
+                                                                "hon_phoi": "Nguyễn Đình Thăng"
                                                               }
                                                             },
                                                             {
@@ -275,7 +277,7 @@
                                                                 "nam_mat": 1941,
                                                                 "ngay_ky": "05/7",
                                                                 "vai_tro_1": "Cụ Bà",
-                                                                "hon_the": "Phạm Thị Tiếu",
+                                                                "hon_phoi": "Phạm Thị Tiếu",
                                                                 "nam_sinh_1": 1901,
                                                                 "nam_mat_1": 1980,
                                                                 "ngay_ky_1": "20/7"
@@ -300,7 +302,7 @@
                                                                     "nam_mat": 1990,
                                                                     "ngay_ky": "11/9",
                                                                     "vai_tro_1": "Ông",
-                                                                    "hon_tu": "Phạm Văn Thuế"
+                                                                    "hon_phoi": "Phạm Văn Thuế"
                                                                   }
                                                                 },
                                                                 {
@@ -311,7 +313,7 @@
                                                                     "nam_sinh": 1922,
                                                                     "nam_mat": 2010,
                                                                     "ngay_ky": "13/6",
-                                                                    "hon_the": "Phạm Thị Hồng",
+                                                                    "hon_phoi": "Phạm Thị Hồng",
                                                                     "vai_tro_1": "Bà",
                                                                     "nam_sinh_1": 1924,
                                                                     "nam_mat_1": 1995,
@@ -324,7 +326,7 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1949,
                                                                         "vai_tro_1": "Chồng",
-                                                                        "hon_tu": "Phạm Nguyên Hoành"
+                                                                        "hon_phoi": "Phạm Nguyên Hoành"
                                                                       }
                                                                     },
                                                                     {
@@ -334,7 +336,7 @@
                                                                         "nam_sinh": 1952,
                                                                         "nam_mat": 2019,
                                                                         "vai_tro_1": "Chồng",
-                                                                        "hon_tu": "Lương Minh Dụ"
+                                                                        "hon_phoi": "Lương Minh Dụ"
                                                                       }
                                                                     },
                                                                     {
@@ -343,7 +345,7 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1957,
                                                                         "vai_tro_1": "Vợ",
-                                                                        "hon_the": "Nguyễn Lan Phương"
+                                                                        "hon_phoi": "Nguyễn Lan Phương"
                                                                       },
                                                                       "children": [
                                                                         {
@@ -352,7 +354,7 @@
                                                                             "đời": "19",
                                                                             "nam_sinh": 1981,
                                                                             "vai_tro_1": "Vợ",
-                                                                            "hon_the": "Nguyễn Thị Thuỷ (Đã ly hôn)"
+                                                                            "hon_phoi": "Nguyễn Thị Thuỷ (Đã ly hôn)"
                                                                           },
                                                                           "children": [
                                                                             {
@@ -386,7 +388,7 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1958,
                                                                         "vai_tro_1": "Chồng",
-                                                                        "hon_tu": "Trịnh Văn Kiếm"
+                                                                        "hon_phoi": "Trịnh Văn Kiếm"
                                                                       }
                                                                     },
                                                                     {
@@ -397,7 +399,7 @@
                                                                         "nam_mat": 2019,
                                                                         "ngay_ky": "29/5",
                                                                         "vai_tro_1": "Vợ",
-                                                                        "hon_the": "Nguyễn Thị Sinh"
+                                                                        "hon_phoi": "Nguyễn Thị Sinh"
                                                                       },
                                                                       "children": [
                                                                         {
@@ -406,7 +408,7 @@
                                                                             "đời": "19",
                                                                             "nam_sinh": 1983,
                                                                             "vai_tro_1": "Chồng",
-                                                                            "hon_the": "Nguyễn Quan Trọng"
+                                                                            "hon_phoi": "Nguyễn Quan Trọng"
                                                                           }
                                                                         }
                                                                       ]
@@ -417,7 +419,7 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1963,
                                                                         "vai_tro_1": "Vợ",
-                                                                        "hon_the": "Phan Kim Phượng"
+                                                                        "hon_phoi": "Phan Kim Phượng"
                                                                       },
                                                                       "children": [
                                                                         {
@@ -426,7 +428,7 @@
                                                                             "đời": "19",
                                                                             "nam_sinh": 1989,
                                                                             "vai_tro_1": "Chồng",
-                                                                            "hon_the": "Nguyễn Anh Tuấn"
+                                                                            "hon_phoi": "Nguyễn Anh Tuấn"
                                                                           }
                                                                         },
                                                                         {
@@ -444,7 +446,7 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1966,
                                                                         "vai_tro_1": "Chồng",
-                                                                        "hon_tu": "Nguyễn Văn Viết (Đã ly hôn)"
+                                                                        "hon_phoi": "Nguyễn Văn Viết (Đã ly hôn)"
                                                                       }
                                                                     },
                                                                     {
@@ -454,7 +456,7 @@
                                                                         "nam_sinh": 1968,
                                                                         "nam_mat": 2011,
                                                                         "vai_tro_1": "Vợ",
-                                                                        "hon_the": "Phạm Thị Hương"
+                                                                        "hon_phoi": "Phạm Thị Hương"
                                                                       },
                                                                       "children": [
                                                                         {
@@ -488,7 +490,7 @@
                                                                     "nam_sinh_1": 1932,
                                                                     "nam_mat_1": 2025,
                                                                     "ngay_ky_1": "07/Giêng",
-                                                                    "hon_the": "Nguyễn Thị Mùi"
+                                                                    "hon_phoi": "Nguyễn Thị Mùi"
                                                                   },
                                                                   "children": [
                                                                     {
@@ -497,7 +499,7 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1956,
                                                                         "vai_tro_1": "Vợ",
-                                                                        "hon_the": "Trần Thị Loan"
+                                                                        "hon_phoi": "Trần Thị Loan"
                                                                       },
                                                                       "children": [
                                                                         {
@@ -506,7 +508,7 @@
                                                                             "đời": "19",
                                                                             "nam_sinh": 1980,
                                                                             "vai_tro_1": "Vợ",
-                                                                            "hon_the": "Phạm Thị Bình"
+                                                                            "hon_phoi": "Phạm Thị Bình"
                                                                           },
                                                                           "children": [
                                                                             {
@@ -531,7 +533,7 @@
                                                                             "đời": "19",
                                                                             "nam_sinh": 1982,
                                                                             "vai_tro_1": "Vợ",
-                                                                            "hon_the": "Trần Hồng Vân"
+                                                                            "hon_phoi": "Trần Hồng Vân"
                                                                           },
                                                                           "children": [
                                                                             {
@@ -556,7 +558,7 @@
                                                                             "đời": "19",
                                                                             "nam_sinh": 1984,
                                                                             "vai_tro_1": "Chồng",
-                                                                            "hon_tu": "Lương Ngọc Duy"
+                                                                            "hon_phoi": "Lương Ngọc Duy"
                                                                           }
                                                                         }
                                                                       ]
@@ -569,7 +571,7 @@
                                                                         "nam_mat": 2017,
                                                                         "ngay_ky": "27/12",
                                                                         "vai_tro_1": "Vợ",
-                                                                        "hon_the": "Trần Thị Thanh"
+                                                                        "hon_phoi": "Trần Thị Thanh"
                                                                       },
                                                                       "children": [
                                                                         {
@@ -594,7 +596,7 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1962,
                                                                         "vai_tro_1": "Chồng",
-                                                                        "hon_tu": "Trần Ngọc Lâm"
+                                                                        "hon_phoi": "Trần Ngọc Lâm"
                                                                       }
                                                                     },
                                                                     {
@@ -603,7 +605,7 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1965,
                                                                         "vai_tro_1": "Vợ",
-                                                                        "hon_the": "Cao Tố Quyên (Đã ly hôn)"
+                                                                        "hon_phoi": "Cao Tố Quyên (Đã ly hôn)"
                                                                       },
                                                                       "children": [
                                                                         {
@@ -619,7 +621,7 @@
                                                                             "đời": "19",
                                                                             "nam_sinh": 1989,
                                                                             "vai_tro_1": "Chồng",
-                                                                            "hon_tu": "Lê Văn Sỹ"
+                                                                            "hon_phoi": "Lê Văn Sỹ"
                                                                           }
                                                                         }
                                                                       ]
@@ -644,7 +646,7 @@
                                                                     "vai_tro": "Bà",
                                                                     "nam_sinh": 1936,
                                                                     "vai_tro_1": "Ông",
-                                                                    "hon_tu": "Bùi Ngọc Định"
+                                                                    "hon_phoi": "Bùi Ngọc Định"
                                                                   }
                                                                 },
                                                                 {
@@ -656,7 +658,7 @@
                                                                     "nam_mat": 1999,
                                                                     "ngay_ky": "11/4",
                                                                     "vai_tro_1": "Ông",
-                                                                    "hon_tu": "Nguyễn Thế Chung"
+                                                                    "hon_phoi": "Nguyễn Thế Chung"
                                                                   }
                                                                 }
                                                               ]
@@ -670,7 +672,7 @@
                                                                 "nam_mat": "19..",
                                                                 "ngay_ky": "18/9",
                                                                 "vai_tro_1": "Cụ Bà",
-                                                                "hon_the": "Phạm Thị Tơn",
+                                                                "hon_phoi": "Phạm Thị Tơn",
                                                                 "ngay_ky_1": "02/Giêng"
                                                               },
                                                               "children": [
@@ -682,7 +684,7 @@
                                                                     "nam_sinh": 1914,
                                                                     "nam_mat": 1992,
                                                                     "ngay_ky": "14/11",
-                                                                    "hon_the": "Vũ Thị Gái",
+                                                                    "hon_phoi": "Vũ Thị Gái",
                                                                     "vai_tro_1": "Bà",
                                                                     "ngay_ky_1": "15/7"
                                                                   },
@@ -703,7 +705,7 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1954,
                                                                         "vai_tro_1": "Vợ",
-                                                                        "hon_the": "Đặng Thị Dum"
+                                                                        "hon_phoi": "Đặng Thị Dum"
                                                                       },
                                                                       "children": [
                                                                         {
@@ -720,7 +722,7 @@
                                                                             "đời": "19",
                                                                             "nam_sinh": 1980,
                                                                             "vai_tro_1": "Chồng",
-                                                                            "hon_the": "Phan Văn Soái"
+                                                                            "hon_phoi": "Phan Văn Soái"
                                                                           }
                                                                         },
                                                                         {
@@ -729,7 +731,7 @@
                                                                             "đời": "19",
                                                                             "nam_sinh": 1983,
                                                                             "vai_tro_1": "Vợ",
-                                                                            "hon_tu": "Cao Thị Hồng"
+                                                                            "hon_phoi": "Cao Thị Hồng"
                                                                           },
                                                                           "children": [
                                                                             {
@@ -756,7 +758,7 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1956,
                                                                         "vai_tro_1": "Chồng",
-                                                                        "hon_tu": "Vũ Văn Đang"
+                                                                        "hon_phoi": "Vũ Văn Đang"
                                                                       }
                                                                     },
                                                                     {
@@ -765,7 +767,7 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1963,
                                                                         "vai_tro_1": "Chồng",
-                                                                        "hon_the": "Mai Văn Xạ"
+                                                                        "hon_phoi": "Mai Văn Xạ"
                                                                       }
                                                                     },
                                                                     {
@@ -782,7 +784,7 @@
                                                                             "đời": "19",
                                                                             "nam_sinh": 1992,
                                                                             "vai_tro_1": "Vợ",
-                                                                            "hon_the": "Bùi Thị Thuỷ"
+                                                                            "hon_phoi": "Bùi Thị Thuỷ"
                                                                           },
                                                                           "children": [
                                                                             {
@@ -807,7 +809,7 @@
                                                                             "đời": "19",
                                                                             "nam_sinh": 1994,
                                                                             "vai_tro_1": "Vợ",
-                                                                            "hon_the": "Giàng Thị Mỷ"
+                                                                            "hon_phoi": "Giàng Thị Mỷ"
                                                                           },
                                                                           "children": [
                                                                             {
@@ -862,7 +864,7 @@
                                                                 "nam_mat": "19..",
                                                                 "ngay_ky": "24/9",
                                                                 "vai_tro_1": "Cụ Bà",
-                                                                "hon_the": "Vũ Thị Sại",
+                                                                "hon_phoi": "Vũ Thị Sại",
                                                                 "ngay_ky_1": "27/6"
                                                               },
                                                               "children": [
@@ -873,7 +875,7 @@
                                                                     "vai_tro": "Bà",
                                                                     "nam_sinh": 1919,
                                                                     "nam_mat": 2006,
-                                                                    "hon_tu": "Vũ Đức Trìu",
+                                                                    "hon_phoi": "Vũ Đức Trìu",
                                                                     "vai_tro_1": "Ông"
                                                                   }
                                                                 },
@@ -886,8 +888,8 @@
                                                                     "nam_mat": 2024,
                                                                     "ngay_ky": "17/05",
                                                                     "vai_tro_1": "Bà",
-                                                                    "hon_the": "Bà Cả: Đoàn Thị Thịnh",
-                                                                    "hon_the_1": "Bà Kế: Lê Thị Chính"
+                                                                    "hon_phoi": "Bà Cả: Đoàn Thị Thịnh",
+                                                                    "hon_phoi_1": "Bà Kế: Lê Thị Chính"
                                                                   },
                                                                   "children": [
                                                                     {
@@ -896,7 +898,7 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1946,
                                                                         "vai_tro_1": "Vợ",
-                                                                        "hon_the": "Nguyễn Thị Oanh"
+                                                                        "hon_phoi": "Nguyễn Thị Oanh"
                                                                       },
                                                                       "children": [
                                                                         {
@@ -905,7 +907,7 @@
                                                                             "đời": "19",
                                                                             "nam_sinh": 1988,
                                                                             "vai_tro_1": "Chồng",
-                                                                            "hon_the": "Nguyễn Quang Đạo"
+                                                                            "hon_phoi": "Nguyễn Quang Đạo"
                                                                           }
                                                                         },
                                                                         {
@@ -923,7 +925,7 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1949,
                                                                         "vai_tro_1": "Chồng",
-                                                                        "hon_the": "Nguyễn Quang Phiêu"
+                                                                        "hon_phoi": "Nguyễn Quang Phiêu"
                                                                       }
                                                                     },
                                                                     {
@@ -933,7 +935,7 @@
                                                                         "nam_sinh": 1951,
                                                                         "nam_mat": 2006,
                                                                         "vai_tro_1": "Vợ",
-                                                                        "hon_the": "Trương Thị Minh"
+                                                                        "hon_phoi": "Trương Thị Minh"
                                                                       },
                                                                       "children": [
                                                                         {
@@ -949,7 +951,7 @@
                                                                             "đời": "19",
                                                                             "nam_sinh": 1992,
                                                                             "vai_tro_1": "Chồng",
-                                                                            "hon_tu": "Phạm Công Nhâm"
+                                                                            "hon_phoi": "Phạm Công Nhâm"
                                                                           }
                                                                         }
                                                                       ]
@@ -960,7 +962,7 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1957,
                                                                         "vai_tro_1": "Chồng",
-                                                                        "hon_tu": "Nguyễn Đình Tuân"
+                                                                        "hon_phoi": "Nguyễn Đình Tuân"
                                                                       }
                                                                     },
                                                                     {
@@ -969,8 +971,8 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1959,
                                                                         "vai_tro_1": "Vợ",
-                                                                        "hon_the": "Vợ cả: Phạm Hồng Hạnh",
-                                                                        "hon_the_1": "Vợ kế: Lưu Thu Thuỷ"
+                                                                        "hon_phoi": "Vợ cả: Phạm Hồng Hạnh",
+                                                                        "hon_phoi_1": "Vợ kế: Lưu Thu Thuỷ"
                                                                       },
                                                                       "children": [
                                                                         {
@@ -979,7 +981,7 @@
                                                                             "đời": "19",
                                                                             "nam_sinh": 1983,
                                                                             "vai_tro_1": "Chồng",
-                                                                            "hon_the": "Nguyễn Duy Hưng"
+                                                                            "hon_phoi": "Nguyễn Duy Hưng"
                                                                           }
                                                                         },
                                                                         {
@@ -1008,7 +1010,7 @@
                                                                     "nam_sinh": 1925,
                                                                     "nam_mat": 2003,
                                                                     "ngay_ky": "08/3",
-                                                                    "hon_the": "Vũ Thị Phượng",
+                                                                    "hon_phoi": "Vũ Thị Phượng",
                                                                     "vai_tro_1": "Bà"
                                                                   },
                                                                   "children": [
@@ -1018,7 +1020,7 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1947,
                                                                         "vai_tro_1": "Vợ",
-                                                                        "hon_the": "Nguyễn Hồng Trang"
+                                                                        "hon_phoi": "Nguyễn Hồng Trang"
                                                                       },
                                                                       "children": [
                                                                         {
@@ -1027,7 +1029,7 @@
                                                                             "đời": "19",
                                                                             "nam_sinh": 1978,
                                                                             "vai_tro_1": "Chồng",
-                                                                            "hon_the": "?"
+                                                                            "hon_phoi": "?"
                                                                           }
                                                                         },
                                                                         {
@@ -1036,7 +1038,7 @@
                                                                             "đời": "19",
                                                                             "nam_sinh": 1984,
                                                                             "vai_tro_1": "Vợ",
-                                                                            "hon_the": "Phạm Thu Hiền"
+                                                                            "hon_phoi": "Phạm Thu Hiền"
                                                                           },
                                                                           "children": [
                                                                             {
@@ -1056,7 +1058,7 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1957,
                                                                         "vai_tro_1": "Chồng",
-                                                                        "hon_the": "Đặng Mạnh Hùng"
+                                                                        "hon_phoi": "Đặng Mạnh Hùng"
                                                                       }
                                                                     },
                                                                     {
@@ -1065,7 +1067,7 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1959,
                                                                         "vai_tro_1": "Vợ",
-                                                                        "hon_the": "Trần Tiểu Hoa"
+                                                                        "hon_phoi": "Trần Tiểu Hoa"
                                                                       },
                                                                       "children": [
                                                                         {
@@ -1074,7 +1076,7 @@
                                                                             "đời": "19",
                                                                             "nam_sinh": 1989,
                                                                             "vai_tro_1": "Chồng",
-                                                                            "hon_the": "?"
+                                                                            "hon_phoi": "?"
                                                                           }
                                                                         },
                                                                         {
@@ -1092,8 +1094,8 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1961,
                                                                         "vai_tro_1": "Vợ",
-                                                                        "hon_the": "Vợ cả: Vương Sơn Hải",
-                                                                        "hon_the_1": "Vợ kế: Nguyễn Hoàng Thanh"
+                                                                        "hon_phoi": "Vợ cả: Vương Sơn Hải",
+                                                                        "hon_phoi_1": "Vợ kế: Nguyễn Hoàng Thanh"
                                                                       },
                                                                       "children": [
                                                                         {
@@ -1102,7 +1104,7 @@
                                                                             "đời": "19",
                                                                             "nam_sinh": 1988,
                                                                             "vai_tro_1": "Chồng",
-                                                                            "hon_the": "?"
+                                                                            "hon_phoi": "?"
                                                                           }
                                                                         },
                                                                         {
@@ -1111,7 +1113,7 @@
                                                                             "đời": "19",
                                                                             "nam_sinh": 1991,
                                                                             "vai_tro_1": "Chồng",
-                                                                            "hon_the": "?"
+                                                                            "hon_phoi": "?"
                                                                           }
                                                                         },
                                                                         {
@@ -1120,7 +1122,7 @@
                                                                             "đời": "19",
                                                                             "nam_sinh": 2005,
                                                                             "vai_tro_1": "Vợ",
-                                                                            "hon_the": "?"
+                                                                            "hon_phoi": "?"
                                                                           }
                                                                         }
                                                                       ]
@@ -1131,7 +1133,7 @@
                                                                         "đời": "18",
                                                                         "nam_sinh": 1963,
                                                                         "vai_tro_1": "Chồng",
-                                                                        "hon_tu": "Lê Hồng Thư"
+                                                                        "hon_phoi": "Lê Hồng Thư"
                                                                       }
                                                                     }
                                                                   ]
@@ -1142,9 +1144,9 @@
                                                                     "đời": "17",
                                                                     "vai_tro": "Bà",
                                                                     "nam_sinh": 1930,
-                                                                    "hon_the": "Lưu Hữu Phước",
+                                                                    "hon_phoi": "Lưu Hữu Phước",
                                                                     "vai_tro_1": "Ông",
-                                                                    "hon_the_1": "Tên thật: Huỳnh Minh Siêng"
+                                                                    "hon_phoi_1": "Tên thật: Huỳnh Minh Siêng"
                                                                   }
                                                                 }
                                                               ]
@@ -1158,7 +1160,7 @@
                                                                 "nam_mat": 1945,
                                                                 "ngay_ky": "?",
                                                                 "vai_tro_1": "Cụ Bà",
-                                                                "hon_the": "Đinh Thị Viên",
+                                                                "hon_phoi": "Đinh Thị Viên",
                                                                 "ngay_ky_1": "?"
                                                               }
                                                             },
@@ -1171,7 +1173,7 @@
                                                                 "nam_mat": 1945,
                                                                 "ngay_ky": "?",
                                                                 "vai_tro_1": "Cụ Ông",
-                                                                "hon_the": "Nho"
+                                                                "hon_phoi": "Nho"
                                                               }
                                                             }
                                                           ]

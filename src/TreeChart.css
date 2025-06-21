@@ -9,6 +9,7 @@
 }
 
 .tree-wrapper {
+  position: relative;
   width: 100%;
   height: 100vh;
   overflow: scroll;
@@ -33,4 +34,41 @@
 .tree-canvas {
   width: 100%;
   height: 90vh;
+}
+
+.tree-canvas text {
+  font-family: Fraunces, serif !important;
+}
+
+/* TreeChart.css */
+.info-node {
+  margin: 0 auto;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  max-width: 700px;
+  background: #fffbe9;
+  border: 1.5px solid #fcd34d;
+  border-radius: 12px;
+  padding: 20px 32px 20px 28px;
+  color: #92400e;
+  font-size: 18px;
+  box-shadow: 0 2px 8px #fbbf2433;
+  font-family: Georgia, serif;
+  font-style: italic;
+  line-height: 1.6;
+  position: static;
+}
+
+.info-node-title {
+  font-size: 22px;
+  font-style: normal;
+}
+
+.info-node-list {
+  margin: 12px 0 0 20px;
+  padding: 0;
+}
+
+.info-node-list li {
+  margin-bottom: 10px;
 }
