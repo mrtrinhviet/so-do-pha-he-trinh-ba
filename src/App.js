@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import "./TreeChart.css";
 import Tree from "react-d3-tree";
 import html2canvas from "html2canvas";
@@ -59,7 +59,7 @@ const renderCustomNode = ({ nodeDatum }) => {
   if (nodeDatum.attributes?.chuc_vu) {
     // Tách chuỗi theo dấu "-"
     const roles = nodeDatum.attributes.chuc_vu.split("-").map((s) => s.trim());
-    console.log("roles: " + roles);
+    // console.log("roles: " + roles);
     roles.forEach((role) => {
       lines.push({
         text: role,
@@ -119,9 +119,9 @@ const renderCustomNode = ({ nodeDatum }) => {
   return (
     <g transform={`translate(0, -${totalHeight / 2})`}>
       <rect
-        width="220"
+        width="230"
         height={totalHeight}
-        x="-110"
+        x="-115"
         y={-totalHeight / 2}
         fill={fillColor}
         stroke="#444"
@@ -169,35 +169,128 @@ const PAPER_SIZES = [
 ];
 
 const generatePDFCanvas = async (ref, scale = 2, setZoom) => {
-  const oldWidth = ref.current.style.width;
-  const oldHeight = ref.current.style.height;
+  if (!ref.current) return null;
 
-  const svg = ref.current.querySelector("svg");
-  if (!svg) return null;
+  const container = ref.current;
+  const svg = container.querySelector("svg");
+  const g = svg.querySelector("g");
+  if (!svg || !g) return null;
 
-  const bbox = svg.getBBox();
-  const svgWidth = bbox.x + bbox.width + 40;
-  const svgHeight = bbox.y + bbox.height + 40;
+  // Lưu lại trạng thái cũ của style để khôi phục sau
+  const oldBg = container.style.background;
+  const infoNode = container.querySelector(".info-node");
+  const oldInfoBg = infoNode ? infoNode.style.background : undefined;
+  const oldInfoBorder = infoNode ? infoNode.style.borderColor : undefined;
 
-  ref.current.style.width = `${svgWidth}px`;
-  ref.current.style.height = `${svgHeight}px`;
+  // Đổi màu nền và info-node sang trắng/xám nhạt để tối ưu in ấn
+  container.style.background = "#fff";
+  if (infoNode) {
+    infoNode.style.background = "#f3f4f6"; // xám nhạt
+    infoNode.style.borderColor = "#d1d5db"; // xám nhạt
+  }
+
+  // Lưu lại trạng thái cũ của SVG/canvas
+  const oldWidth = container.style.width;
+  const oldHeight = container.style.height;
+  const oldOverflow = container.style.overflow;
+  const oldSvgWidth = svg.getAttribute("width");
+  const oldSvgHeight = svg.getAttribute("height");
+  const oldTransform = g.getAttribute("transform");
+
+  // Padding cho các phía
+  const paddingTop = 100;
+  const paddingSides = 100;
+  const paddingBottom = 320;
+
+  const bbox = g.getBBox();
+  const svgWidth = bbox.width + paddingSides * 2;
+  const svgHeight = bbox.height + paddingTop + paddingBottom;
+
+  container.style.width = `${svgWidth}px`;
+  container.style.height = `${svgHeight}px`;
+  container.style.overflow = "visible";
   svg.setAttribute("width", svgWidth);
   svg.setAttribute("height", svgHeight);
+  g.setAttribute(
+    "transform",
+    `translate(${-bbox.x + paddingSides},${-bbox.y + paddingTop})`
+  );
 
-  await new Promise((resolve) => setTimeout(resolve, 500));
+  await new Promise((r) => setTimeout(r, 500));
+  await document.fonts.ready;
 
-  await document.fonts.ready; // Đảm bảo font đã load
-  const canvas = await html2canvas(ref.current, { useCORS: true, scale });
+  const canvas = await html2canvas(container, {
+    useCORS: true,
+    backgroundColor: "#fff",
+    scale,
+    width: svgWidth,
+    height: svgHeight,
+  });
 
-  // Khôi phục lại kích thước cũ
-  ref.current.style.width = oldWidth || "";
-  ref.current.style.height = oldHeight || "";
-  svg.removeAttribute("width");
-  svg.removeAttribute("height");
+  // Đổi màu RGB sang sRGB tối ưu trước khi xuất
+  const ctx = canvas.getContext("2d");
+  if (ctx) {
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const data = imageData.data;
+    for (let i = 0; i < data.length; i += 4) {
+      // Giảm độ bão hòa và tinh chỉnh gam
+      data[i] = Math.min(255, data[i] * 0.98); // Red
+      data[i + 1] = Math.min(255, data[i + 1] * 0.97); // Green
+      data[i + 2] = Math.min(255, data[i + 2] * 0.98); // Blue
+    }
+    ctx.globalAlpha = 0.98;
+    ctx.putImageData(imageData, 0, 0);
 
-  // Trigger lại render nếu cần
+    // --- VẼ KHUNG VIỀN 4 CẠNH ---
+    // ctx.save();
+    // const borderPadding = 110;
+    // ctx.strokeStyle = "#92400e";
+    // ctx.lineWidth = 16;
+    // const x = borderPadding;
+    // const y = borderPadding;
+    // const w = canvas.width - 2 * borderPadding;
+    // const h = canvas.height - 2 * borderPadding;
+    // ctx.strokeRect(
+    //   x + ctx.lineWidth / 2,
+    //   y + ctx.lineWidth / 2,
+    //   w - ctx.lineWidth,
+    //   h - ctx.lineWidth
+    // );
+
+    // const innerPadding = 24;
+    // ctx.lineWidth = 6;
+    // ctx.strokeStyle = "#fbbf24";
+    // const x2 = borderPadding + innerPadding;
+    // const y2 = borderPadding + innerPadding;
+    // const w2 = canvas.width - 2 * (borderPadding + innerPadding);
+    // const h2 = canvas.height - 2 * (borderPadding + innerPadding);
+    // ctx.strokeRect(
+    //   x2 + ctx.lineWidth / 2,
+    //   y2 + ctx.lineWidth / 2,
+    //   w2 - ctx.lineWidth,
+    //   h2 - ctx.lineWidth
+    // );
+    // ctx.restore();
+  }
+
+  // Khôi phục lại trạng thái cũ
+  container.style.width = oldWidth;
+  container.style.height = oldHeight;
+  container.style.overflow = oldOverflow;
+  container.style.background = oldBg || "#fffbe9";
+  if (infoNode) {
+    infoNode.style.background = oldInfoBg || "#fffbe9";
+    infoNode.style.borderColor = oldInfoBorder || "#fcd34d";
+  }
+  if (oldSvgWidth) svg.setAttribute("width", oldSvgWidth);
+  else svg.removeAttribute("width");
+  if (oldSvgHeight) svg.setAttribute("height", oldSvgHeight);
+  else svg.removeAttribute("height");
+  if (oldTransform) g.setAttribute("transform", oldTransform);
+  else g.removeAttribute("transform");
+
   if (typeof setZoom === "function") {
-    setZoom((z) => z + 0.0001); // Thay đổi rất nhỏ để React-D3-Tree render lại
+    setZoom((z) => z + 0.0001);
   }
 
   return canvas;
@@ -206,7 +299,7 @@ const generatePDFCanvas = async (ref, scale = 2, setZoom) => {
 const previewPDF = async (ref, paperSize = "a4", setExporting, setZoom) => {
   if (setExporting) setExporting(true);
   try {
-    const scale = 2;
+    const scale = 1.2;
     const canvas = await generatePDFCanvas(ref, scale, setZoom);
 
     const imgWidth = canvas.width;
@@ -261,13 +354,13 @@ const previewPDF = async (ref, paperSize = "a4", setExporting, setZoom) => {
         const offsetX = (pageWidth - drawWidth) / 2;
         const offsetY = (pageHeight - drawHeight) / 2;
 
-        const pageImg = pageCanvas.toDataURL("image/png");
+        const pageImg = pageCanvas.toDataURL("image/jpeg", 0.85);
         if (row > 0 || col > 0) pdf.addPage();
 
         pdf.setFillColor(255, 255, 255);
         pdf.rect(0, 0, pageWidth, pageHeight, "F");
 
-        pdf.addImage(pageImg, "PNG", offsetX, offsetY, drawWidth, drawHeight);
+        pdf.addImage(pageImg, "JPEG", offsetX, offsetY, drawWidth, drawHeight);
       }
     }
 
@@ -307,7 +400,7 @@ const previewPDF = async (ref, paperSize = "a4", setExporting, setZoom) => {
 const downloadPDF = async (ref, paperSize = "a4", setExporting, setZoom) => {
   if (setExporting) setExporting(true);
   try {
-    const scale = 2;
+    const scale = 1.2;
     const canvas = await generatePDFCanvas(ref, scale, setZoom);
     const imgWidth = canvas.width;
     const imgHeight = canvas.height;
@@ -364,14 +457,14 @@ const downloadPDF = async (ref, paperSize = "a4", setExporting, setZoom) => {
         const offsetX = (pageWidth - drawWidth) / 2;
         const offsetY = (pageHeight - drawHeight) / 2;
 
-        const pageImg = pageCanvas.toDataURL("image/png");
+        const pageImg = pageCanvas.toDataURL("image/jpeg", 0.85);
         if (row > 0 || col > 0) pdf.addPage();
 
         // Tô nền trắng cho trang PDF trước khi vẽ ảnh (tránh bị trong suốt)
         pdf.setFillColor(255, 255, 255);
         pdf.rect(0, 0, pageWidth, pageHeight, "F");
 
-        pdf.addImage(pageImg, "PNG", offsetX, offsetY, drawWidth, drawHeight);
+        pdf.addImage(pageImg, "JPEG", offsetX, offsetY, drawWidth, drawHeight);
       }
     }
 
@@ -383,66 +476,63 @@ const downloadPDF = async (ref, paperSize = "a4", setExporting, setZoom) => {
   }
 };
 
-const downloadImage = async (ref, setExportingImage) => {
-  if (setExportingImage) setExportingImage(true);
+function fitTreeToViewport(ref, setTranslate, setZoom, padding = 40) {
+  const container = ref.current;
+  if (!container) return;
+  const g = container.querySelector("svg g");
+  if (!g) return;
+  const bbox = g.getBBox();
+  if (bbox.width === 0 || bbox.height === 0) return;
+
+  const containerWidth = container.offsetWidth - padding * 2;
+  const containerHeight = container.offsetHeight - padding * 2;
+
+  // Tính tỉ lệ zoom nhỏ nhất để vừa cả chiều ngang và dọc
+  const zoomX = containerWidth / bbox.width;
+  const zoomY = containerHeight / bbox.height;
+  const zoom = Math.min(zoomX, zoomY, 1); // Không phóng to quá 100%
+
+  // Tính lại translate để căn giữa
+  const centerX = bbox.x + bbox.width / 2;
+  const centerY = bbox.y + bbox.height / 2;
+  const x = container.offsetWidth / 2 - centerX * zoom;
+  const y = container.offsetHeight / 2 - centerY * zoom;
+
+  setZoom(zoom);
+  setTranslate({ x, y });
+}
+
+const exportToSizedImage = async (
+  ref,
+  setIsExporting,
+  setTranslate,
+  setZoom
+) => {
+  if (setIsExporting) setIsExporting(true);
   try {
-    if (!ref.current) return;
+    const scale = 2;
+    const canvas = await generatePDFCanvas(ref, scale, setZoom);
 
-    const svg = ref.current.querySelector("svg");
-    if (!svg) {
-      alert("Không tìm thấy SVG để xuất ảnh!");
-      return;
-    }
-
-    const bbox = svg.getBBox();
-    const svgWidth = bbox.x + bbox.width + 40;
-    const svgHeight = bbox.y + bbox.height + 40;
-
-    const oldWidth = ref.current.style.width;
-    const oldHeight = ref.current.style.height;
-    const oldOverflow = ref.current.style.overflow;
-
-    ref.current.style.width = `${svgWidth}px`;
-    ref.current.style.height = `${svgHeight}px`;
-    ref.current.style.overflow = "visible";
-    svg.setAttribute("width", svgWidth);
-    svg.setAttribute("height", svgHeight);
-
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    await document.fonts.ready;
-
-    const canvas = await html2canvas(ref.current, {
-      useCORS: true,
-      backgroundColor: null,
-      scale: 3,
-      scrollX: 0,
-      scrollY: 0,
-      windowWidth: svgWidth,
-      windowHeight: svgHeight,
-    });
-
-    ref.current.style.width = oldWidth || "";
-    ref.current.style.height = oldHeight || "";
-    ref.current.style.overflow = oldOverflow || "";
-    svg.removeAttribute("width");
-    svg.removeAttribute("height");
-
-    if (!canvas || !canvas.toDataURL) {
-      alert("Không thể tạo canvas từ cây phả hệ!");
-      return;
-    }
-    const img = canvas.toDataURL("image/png");
-    if (!img || img.length < 100) {
-      alert("Ảnh xuất ra bị lỗi, vui lòng thử lại hoặc thu nhỏ cây.");
-      return;
-    }
+    // Xuất ảnh từ canvas
     const link = document.createElement("a");
-    link.href = img;
-    link.download = "so-do-pha-he-trinh-ba.png";
+    link.href = canvas.toDataURL("image/png");
+    link.download = "so-do-pha-he.png";
     link.click();
   } finally {
-    if (setExportingImage) setExportingImage(false);
+    fitTreeToViewport(ref, setTranslate, setZoom);
+    if (setIsExporting) setIsExporting(false);
   }
+};
+
+export const useRestoreTranslate = (ref, setTranslate, setZoom, deps = []) => {
+  useEffect(() => {
+    // let tries = 0;
+    const tryFit = () => {
+      fitTreeToViewport(ref, setTranslate, setZoom);
+    };
+    setTimeout(tryFit, 300);
+    // eslint-disable-next-line
+  }, deps);
 };
 
 export default function SoDoPhaHeTrinhBaToc() {
@@ -450,12 +540,14 @@ export default function SoDoPhaHeTrinhBaToc() {
   const [paperSize, setPaperSize] = useState("a0");
   const [search, setSearch] = useState("");
   const [zoom, setZoom] = useState(1);
-  const [infoExpanded, setInfoExpanded] = useState(true); // Thêm state cho expand/collapse
+  // const [infoExpanded, setInfoExpanded] = useState(true); // Thêm state cho expand/collapse
   const [exportingPreview, setExportingPreview] = useState(false);
   const [exportingDownload, setExportingDownload] = useState(false);
-  const [exportingImage, setExportingImage] = useState(false);
   // Thêm biến kiểm tra thiết bị di động
   const isMobile = /iPhone|iPad|Android|Mobile/i.test(navigator.userAgent);
+  // const treeContainer = useRef(null);
+  const [translate, setTranslate] = useState({ x: 0, y: 0 });
+  const [isExporting, setIsExporting] = useState(false);
 
   // Dữ liệu đã lọc theo nhánh
   const filteredData = useMemo(() => {
@@ -477,85 +569,86 @@ export default function SoDoPhaHeTrinhBaToc() {
     return filtered ? filtered : { name: "Không tìm thấy nhánh phù hợp" };
   }, [search]);
 
+  useRestoreTranslate(treeContainer, setTranslate, setZoom, [filteredData]);
   // Thông tin về gia phả (có thể chỉnh sửa nội dung này tuỳ ý)
-  const info = (
-    <div
-      style={{
-        background: "#fffbe9",
-        border: "1px solid #fcd34d",
-        borderRadius: 8,
-        padding: infoExpanded ? "16px 20px" : "6px 20px",
-        marginBottom: 20,
-        color: "#92400e",
-        fontSize: 16,
-        maxWidth: 900,
-        marginLeft: "auto",
-        marginRight: "auto",
-        boxShadow: "0 2px 8px #fbbf2433",
-        transition: "padding 0.2s",
-        position: "relative",
-        minHeight: 0,
-      }}
-    >
-      <button
-        onClick={() => setInfoExpanded((v) => !v)}
-        style={{
-          position: "absolute",
-          top: 8,
-          right: 12,
-          background: "#f59e0b",
-          color: "#fff",
-          border: "none",
-          borderRadius: 4,
-          padding: "2px 10px",
-          fontWeight: 600,
-          cursor: "pointer",
-          fontSize: 14,
-          zIndex: 2,
-        }}
-        aria-label={infoExpanded ? "Thu gọn ghi chú" : "Mở rộng ghi chú"}
-        title={infoExpanded ? "Thu gọn ghi chú" : "Mở rộng ghi chú"}
-      >
-        {infoExpanded ? "Ẩn ghi chú ▲" : "Hiện ghi chú ▼"}
-      </button>
-      {infoExpanded && (
-        <>
-          <b>Thông tin gia phả Trịnh Bá Tộc:</b>
-          <ul style={{ margin: "8px 0 0 20px", padding: 0 }}>
-            <li style={{ marginBottom: 10 }}>
-              <b>
-                Làng Thượng Phúc, xã Xuân Thượng, huyện Xuân Trường, tỉnh Nam
-                Định.
-              </b>
-            </li>
-            {/* <li style={{ marginBottom: 10 }}>
-              <b>TẠO LẬP:</b> HẬU DUỆ VIỄN TÔN - TRỊNH BÁ CHÍ TRUNG ĐỜI THỨ 18.
-            </li>
-            <li style={{ marginBottom: 10 }}>
-              <b>TUẾ THỨ:</b> ẤT TỴ NIÊN - SƠ TỨ NGUYỆT - NHỊ THẬP NGŨ NHẬT -
-              2025.
-            </li> */}
-            <li style={{ marginBottom: 10 }}>
-              <b>
-                "CON NGƯỜI SINH TRƯỞNG BỞI ĐÂU,
-                <br />
-                GỐC LÀ TIÊN TỔ - ƠN SÂU RÕ RÀNG…"
-              </b>
-            </li>
-            {/* <li style={{ marginBottom: 10 }}>
-              <b>Ý nghĩa:</b> Sơ đồ giúp con cháu hiểu về nguồn cội, kết nối các
-              thế hệ, lưu giữ truyền thống gia đình.
-            </li> */}
-          </ul>
-        </>
-      )}
-    </div>
-  );
+  // const info = (
+  //   <div
+  //     style={{
+  //       background: "#fffbe9",
+  //       border: "1px solid #fcd34d",
+  //       borderRadius: 8,
+  //       padding: infoExpanded ? "16px 20px" : "6px 20px",
+  //       marginBottom: 20,
+  //       color: "#92400e",
+  //       fontSize: 16,
+  //       maxWidth: 900,
+  //       marginLeft: "auto",
+  //       marginRight: "auto",
+  //       boxShadow: "0 2px 8px #fbbf2433",
+  //       transition: "padding 0.2s",
+  //       position: "relative",
+  //       minHeight: 0,
+  //     }}
+  //   >
+  //     <button
+  //       onClick={() => setInfoExpanded((v) => !v)}
+  //       style={{
+  //         position: "absolute",
+  //         top: 8,
+  //         right: 12,
+  //         background: "#f59e0b",
+  //         color: "#fff",
+  //         border: "none",
+  //         borderRadius: 4,
+  //         padding: "2px 10px",
+  //         fontWeight: 600,
+  //         cursor: "pointer",
+  //         fontSize: 14,
+  //         zIndex: 2,
+  //       }}
+  //       aria-label={infoExpanded ? "Thu gọn ghi chú" : "Mở rộng ghi chú"}
+  //       title={infoExpanded ? "Thu gọn ghi chú" : "Mở rộng ghi chú"}
+  //     >
+  //       {infoExpanded ? "Ẩn ghi chú ▲" : "Hiện ghi chú ▼"}
+  //     </button>
+  //     {infoExpanded && (
+  //       <>
+  //         <b>Thông tin gia phả Trịnh Bá Tộc:</b>
+  //         <ul style={{ margin: "8px 0 0 20px", padding: 0 }}>
+  //           <li style={{ marginBottom: 10 }}>
+  //             <b>
+  //               Làng Thượng Phúc, xã Xuân Thượng, huyện Xuân Trường, tỉnh Nam
+  //               Định.
+  //             </b>
+  //           </li>
+  //           {/* <li style={{ marginBottom: 10 }}>
+  //             <b>TẠO LẬP:</b> HẬU DUỆ VIỄN TÔN - TRỊNH BÁ CHÍ TRUNG ĐỜI THỨ 18.
+  //           </li>
+  //           <li style={{ marginBottom: 10 }}>
+  //             <b>TUẾ THỨ:</b> ẤT TỴ NIÊN - SƠ TỨ NGUYỆT - NHỊ THẬP NGŨ NHẬT -
+  //             2025.
+  //           </li> */}
+  //           <li style={{ marginBottom: 10 }}>
+  //             <b>
+  //               "CON NGƯỜI SINH TRƯỞNG BỞI ĐÂU,
+  //               <br />
+  //               GỐC LÀ TIÊN TỔ - ƠN SÂU RÕ RÀNG…"
+  //             </b>
+  //           </li>
+  //           {/* <li style={{ marginBottom: 10 }}>
+  //             <b>Ý nghĩa:</b> Sơ đồ giúp con cháu hiểu về nguồn cội, kết nối các
+  //             thế hệ, lưu giữ truyền thống gia đình.
+  //           </li> */}
+  //         </ul>
+  //       </>
+  //     )}
+  //   </div>
+  // );
 
   return (
     <div className="tree-wrapper" style={{ position: "relative" }}>
       <h1 className="tree-title">Phả hệ Trịnh Bá Tộc - Chi 2</h1>
-      {info}
+      {/* {info} */}
       <div style={{ marginBottom: 16 }}>
         {/* Thêm input tìm kiếm nhánh */}
         <input
@@ -647,9 +740,16 @@ export default function SoDoPhaHeTrinhBaToc() {
             fontWeight: 600,
             cursor: "pointer",
           }}
-          onClick={() => downloadImage(treeContainer, setExportingImage)}
+          onClick={() =>
+            exportToSizedImage(
+              treeContainer,
+              setIsExporting,
+              setTranslate,
+              setZoom
+            )
+          }
         >
-          Xuất ảnh PNG
+          {isExporting ? "Đang xuất ảnh..." : "Xuất ảnh"}
         </button>
         <button
           style={{
@@ -682,7 +782,7 @@ export default function SoDoPhaHeTrinhBaToc() {
           Thu nhỏ -
         </button>
       </div>
-      {exportingImage && (
+      {isExporting && (
         <div
           style={{
             position: "fixed",
@@ -701,7 +801,7 @@ export default function SoDoPhaHeTrinhBaToc() {
             pointerEvents: "auto",
           }}
         >
-          Đang xuất ảnh PNG, vui lòng chờ...
+          Đang xuất ảnh, vui lòng chờ...
         </div>
       )}
       <div
@@ -715,8 +815,8 @@ export default function SoDoPhaHeTrinhBaToc() {
           background: "#fffbe9",
         }}
       >
-        {/* <div className="info-node">
-          <b className="info-node-title">Thông tin gia phả Trịnh Bá Tộc:</b>
+        <div className="info-node">
+          <b className="info-node-title">Phả hệ Trịnh Bá Tộc - Chi 2</b>
           <ul className="info-node-list">
             <li>
               <b>
@@ -724,13 +824,7 @@ export default function SoDoPhaHeTrinhBaToc() {
                 Định.
               </b>
             </li>
-            <li>
-              <b>TẠO LẬP:</b> HẬU DUỆ VIỄN TÔN - TRỊNH BÁ CHÍ TRUNG ĐỜI THỨ 18.
-            </li>
-            <li>
-              <b>TUẾ THỨ:</b> ẤT TỴ NIÊN - SƠ TỨ NGUYỆT - NHỊ THẬP NGŨ NHẬT -
-              2025.
-            </li>
+
             <li>
               <b>
                 "CON NGƯỜI SINH TRƯỞNG BỞI ĐÂU,
@@ -738,26 +832,20 @@ export default function SoDoPhaHeTrinhBaToc() {
                 GỐC LÀ TIÊN TỔ - ƠN SÂU RÕ RÀNG…"
               </b>
             </li>
-            <li>
-              <b>Ý nghĩa:</b> Sơ đồ giúp con cháu hiểu về nguồn cội, kết nối các
-              thế hệ, lưu giữ truyền thống gia đình.
-            </li>
           </ul>
-        </div> */}
+        </div>
         <Tree
-          data={filteredData}
+          data={filteredData && filteredData.children ? filteredData : treeData}
           orientation="vertical"
-          translate={{ x: window.innerWidth / 2, y: 320 }}
+          translate={translate}
           zoom={zoom}
           zoomable={true}
           shouldCollapseNeighborNodes={false}
-          separation={{ siblings: 4, nonSiblings: 5 }}
-          nodeSize={{ x: 80, y: 240 }}
+          separation={{ siblings: 3, nonSiblings: 3 }}
+          nodeSize={{ x: 80, y: 220 }}
           renderCustomNodeElement={renderCustomNode}
         />
       </div>
     </div>
   );
 }
-
-// Dữ liệu treeData được định nghĩa bên ngoài để dễ bảo trì
