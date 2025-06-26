@@ -413,7 +413,7 @@ const exportToSizedImage = async (
     let scale;
     let win;
     if (isMobile) {
-      // Mở tab mới NGAY khi click
+      // Mở tab mới NGAY khi click và hiển thị thông báo đang tải
       win = window.open();
       if (!win) {
         alert(
@@ -421,6 +421,16 @@ const exportToSizedImage = async (
         );
         return;
       }
+      win.document.write(`
+        <html>
+          <head><title>Đang tải ảnh...</title></head>
+          <body style="margin:0;display:flex;align-items:center;justify-content:center;height:100vh;background:#fffbe9;">
+            <div style="color:#92400e;font-size:20px;font-family:Georgia,serif;">
+              Đang tải ảnh, vui lòng chờ...
+            </div>
+          </body>
+        </html>
+      `);
       scale = 0.5;
     } else {
       scale = 2;
@@ -430,13 +440,10 @@ const exportToSizedImage = async (
     // Xuất ảnh từ canvas
     if (isMobile) {
       const img = canvas.toDataURL("image/png");
-      win.document.write(
-        `<html><head><title>Ảnh cây phả hệ</title></head>
-        <body style="margin:0;background:#fff;text-align:center">
-          <img src="${img}" style="max-width:100vw;max-height:100vh;display:block;margin:auto"/>
-          <div style="color:#92400e;font-size:18px;margin:12px 0">Nhấn giữ vào ảnh để lưu về máy</div>
-        </body></html>`
-      );
+      win.document.body.innerHTML = `
+        <img src="${img}" style="max-width:100vw;max-height:100vh;display:block;margin:auto"/>
+        <div style="color:#92400e;font-size:18px;margin:12px 0;text-align:center">Nhấn giữ vào ảnh để lưu về máy</div>
+      `;
     } else {
       const link = document.createElement("a");
       link.href = canvas.toDataURL("image/png");
@@ -588,7 +595,6 @@ export default function SoDoPhaHeTrinhBaToc() {
         <select
           value={paperSize}
           onChange={(e) => setPaperSize(e.target.value)}
-          style={{ padding: "6px 12px", borderRadius: 4, marginRight: 16 }}
         >
           {PAPER_SIZES.map((size) => (
             <option key={size.value} value={size.value}>

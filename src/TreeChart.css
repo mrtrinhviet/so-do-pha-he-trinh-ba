@@ -135,15 +135,6 @@
   margin: 0 8px 0 0;
 }
 
-@media (max-width: 600px) {
-  .tree-actions-btn {
-    padding: 7px 10px;
-    font-size: 15px;
-    margin-right: 6px;
-    margin-bottom: 8px;
-  }
-}
-
 /* TreeChart.css */
 .tree-actions-bar {
   display: flex;
@@ -153,23 +144,34 @@
   margin: 12px 8px;
 }
 
+.tree-search-input {
+  border-radius: 4;
+  border: "1px solid #ccc";
+}
+
 @media (max-width: 600px) {
+  .tree-actions-bar {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
   .tree-actions-bar input,
   .tree-actions-bar select {
     min-width: 0;
     width: 100%;
-    margin: 4px 0 4px 0;
+    margin: 4px 0;
     font-size: 15px;
+    box-sizing: border-box;
   }
   .tree-actions-bar label {
     margin-right: 4px;
     font-size: 15px;
+    width: 100%;
   }
-}
-
-.tree-search-input {
-  padding: "6px 12px";
-  border-radius: 4;
-  margin: "0 16px ";
-  border: "1px solid #ccc";
+  .tree-actions-btn {
+    width: 100%;
+    margin-right: 0 !important;
+    margin-bottom: 6px;
+    font-size: 15px;
+    box-sizing: border-box;
+  }
 }
