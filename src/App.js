@@ -491,7 +491,7 @@ const exportToSizedImage = async (
     const isMobile = /iPhone|iPad|Android|Mobile/i.test(navigator.userAgent);
     let scale;
     if (isMobile) {
-      scale = 1;
+      scale = 0.8;
     } else {
       scale = 2;
     }
