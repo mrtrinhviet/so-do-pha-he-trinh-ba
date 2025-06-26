@@ -490,8 +490,17 @@ const exportToSizedImage = async (
   try {
     const isMobile = /iPhone|iPad|Android|Mobile/i.test(navigator.userAgent);
     let scale;
+    let win;
     if (isMobile) {
-      scale = 0.8;
+      // Mở tab mới NGAY khi click
+      win = window.open();
+      if (!win) {
+        alert(
+          "Trình duyệt đã chặn popup. Vui lòng cho phép mở tab mới để xem ảnh."
+        );
+        return;
+      }
+      scale = 0.5;
     } else {
       scale = 2;
     }
@@ -500,20 +509,13 @@ const exportToSizedImage = async (
     // Xuất ảnh từ canvas
     if (isMobile) {
       const img = canvas.toDataURL("image/png");
-      const win = window.open();
-      if (win) {
-        win.document.write(
-          `<html><head><title>Ảnh cây phả hệ</title></head>
-      <body style="margin:0;background:#fff;text-align:center">
-        <img src="${img}" style="max-width:100vw;max-height:100vh;display:block;margin:auto"/>
-        <div style="color:#92400e;font-size:18px;margin:12px 0">Nhấn giữ vào ảnh để lưu về máy</div>
-      </body></html>`
-        );
-      } else {
-        alert(
-          "Trình duyệt đã chặn popup. Vui lòng cho phép mở tab mới để xem ảnh."
-        );
-      }
+      win.document.write(
+        `<html><head><title>Ảnh cây phả hệ</title></head>
+        <body style="margin:0;background:#fff;text-align:center">
+          <img src="${img}" style="max-width:100vw;max-height:100vh;display:block;margin:auto"/>
+          <div style="color:#92400e;font-size:18px;margin:12px 0">Nhấn giữ vào ảnh để lưu về máy</div>
+        </body></html>`
+      );
     } else {
       const link = document.createElement("a");
       link.href = canvas.toDataURL("image/png");
