@@ -168,58 +168,58 @@ const PAPER_SIZES = [
   { label: "A4 (chuẩn)", value: "a4" },
 ];
 
-const generatePDFCanvas = async (ref, scale = 2, setZoom) => {
+const generatePDFCanvas = async (ref, scale = 1.2, setZoom) => {
   if (!ref.current) return null;
 
+  // Lấy các thông số cần thiết
   const container = ref.current;
   const svg = container.querySelector("svg");
   const g = svg.querySelector("g");
   if (!svg || !g) return null;
 
-  // Lưu lại trạng thái cũ của style để khôi phục sau
-  const oldBg = container.style.background;
-  const infoNode = container.querySelector(".info-node");
-  const oldInfoBg = infoNode ? infoNode.style.background : undefined;
-  const oldInfoBorder = infoNode ? infoNode.style.borderColor : undefined;
-
-  // Đổi màu nền và info-node sang trắng/xám nhạt để tối ưu in ấn
-  container.style.background = "#fff";
-  if (infoNode) {
-    infoNode.style.background = "#f3f4f6"; // xám nhạt
-    infoNode.style.borderColor = "#d1d5db"; // xám nhạt
-  }
-
-  // Lưu lại trạng thái cũ của SVG/canvas
-  const oldWidth = container.style.width;
-  const oldHeight = container.style.height;
-  const oldOverflow = container.style.overflow;
-  const oldSvgWidth = svg.getAttribute("width");
-  const oldSvgHeight = svg.getAttribute("height");
-  const oldTransform = g.getAttribute("transform");
-
   // Padding cho các phía
-  const paddingTop = 100;
-  const paddingSides = 100;
-  const paddingBottom = 320;
+  const paddingTop = 80;
+  const paddingSides = 120;
+  const paddingBottom = 380;
 
   const bbox = g.getBBox();
   const svgWidth = bbox.width + paddingSides * 2;
   const svgHeight = bbox.height + paddingTop + paddingBottom;
 
-  container.style.width = `${svgWidth}px`;
-  container.style.height = `${svgHeight}px`;
-  container.style.overflow = "visible";
-  svg.setAttribute("width", svgWidth);
-  svg.setAttribute("height", svgHeight);
-  g.setAttribute(
+  // Clone node để render ngoài body, tránh bị crop bởi viewport
+  const clone = container.cloneNode(true);
+  clone.style.position = "absolute";
+  clone.style.left = "0";
+  clone.style.top = "0";
+  clone.style.zIndex = "-9999";
+  clone.style.width = `${svgWidth}px`;
+  clone.style.height = `${svgHeight}px`;
+  clone.style.overflow = "visible";
+  clone.style.background = "#fff";
+  document.body.appendChild(clone);
+
+  // Chỉnh svg/g trong clone
+  const cloneSvg = clone.querySelector("svg");
+  const cloneG = cloneSvg.querySelector("g");
+  cloneSvg.setAttribute("width", svgWidth);
+  cloneSvg.setAttribute("height", svgHeight);
+  cloneG.setAttribute(
     "transform",
     `translate(${-bbox.x + paddingSides},${-bbox.y + paddingTop})`
   );
 
+  // Đổi màu info-node trong clone (nếu có)
+  const infoNode = clone.querySelector(".info-node");
+  if (infoNode) {
+    infoNode.style.background = "#f3f4f6";
+    infoNode.style.borderColor = "#d1d5db";
+  }
+
   await new Promise((r) => setTimeout(r, 500));
   await document.fonts.ready;
 
-  const canvas = await html2canvas(container, {
+  // Render canvas từ clone
+  const canvas = await html2canvas(clone, {
     useCORS: true,
     backgroundColor: "#fff",
     scale,
@@ -227,13 +227,15 @@ const generatePDFCanvas = async (ref, scale = 2, setZoom) => {
     height: svgHeight,
   });
 
-  // Đổi màu RGB sang sRGB tối ưu trước khi xuất
+  // Xóa clone khỏi DOM
+  document.body.removeChild(clone);
+
+  // Tối ưu màu sắc
   const ctx = canvas.getContext("2d");
   if (ctx) {
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     const data = imageData.data;
     for (let i = 0; i < data.length; i += 4) {
-      // Giảm độ bão hòa và tinh chỉnh gam
       data[i] = Math.min(255, data[i] * 0.98); // Red
       data[i + 1] = Math.min(255, data[i + 1] * 0.97); // Green
       data[i + 2] = Math.min(255, data[i + 2] * 0.98); // Blue
@@ -243,56 +245,32 @@ const generatePDFCanvas = async (ref, scale = 2, setZoom) => {
 
     // --- VẼ KHUNG VIỀN 4 CẠNH ---
     // ctx.save();
-    // const borderPadding = 110;
+    // const borderPadding = 60;
     // ctx.strokeStyle = "#92400e";
     // ctx.lineWidth = 16;
-    // const x = borderPadding;
-    // const y = borderPadding;
-    // const w = canvas.width - 2 * borderPadding;
-    // const h = canvas.height - 2 * borderPadding;
-    // ctx.strokeRect(
-    //   x + ctx.lineWidth / 2,
-    //   y + ctx.lineWidth / 2,
-    //   w - ctx.lineWidth,
-    //   h - ctx.lineWidth
-    // );
+    // const halfLine = ctx.lineWidth / 2;
+    // const x = Math.round(borderPadding + halfLine);
+    // const y = Math.round(borderPadding + halfLine);
+    // const w = Math.round(canvas.width - 2 * borderPadding - ctx.lineWidth);
+    // const h = Math.round(canvas.height - 2 * borderPadding - ctx.lineWidth);
+    // ctx.strokeRect(x, y, w, h);
 
     // const innerPadding = 24;
     // ctx.lineWidth = 6;
     // ctx.strokeStyle = "#fbbf24";
-    // const x2 = borderPadding + innerPadding;
-    // const y2 = borderPadding + innerPadding;
-    // const w2 = canvas.width - 2 * (borderPadding + innerPadding);
-    // const h2 = canvas.height - 2 * (borderPadding + innerPadding);
-    // ctx.strokeRect(
-    //   x2 + ctx.lineWidth / 2,
-    //   y2 + ctx.lineWidth / 2,
-    //   w2 - ctx.lineWidth,
-    //   h2 - ctx.lineWidth
+    // const x2 = Math.round(borderPadding + innerPadding + ctx.lineWidth / 2);
+    // const y2 = Math.round(borderPadding + innerPadding + ctx.lineWidth / 2);
+    // const w2 = Math.round(
+    //   canvas.width - 2 * (borderPadding + innerPadding) - ctx.lineWidth
     // );
+    // const h2 = Math.round(
+    //   canvas.height - 2 * (borderPadding + innerPadding) - ctx.lineWidth
+    // );
+    // ctx.strokeRect(x2, y2, w2, h2);
     // ctx.restore();
   }
 
-  // Khôi phục lại trạng thái cũ
-  container.style.width = oldWidth;
-  container.style.height = oldHeight;
-  container.style.overflow = oldOverflow;
-  container.style.background = oldBg || "#fffbe9";
-  if (infoNode) {
-    infoNode.style.background = oldInfoBg || "#fffbe9";
-    infoNode.style.borderColor = oldInfoBorder || "#fcd34d";
-  }
-  if (oldSvgWidth) svg.setAttribute("width", oldSvgWidth);
-  else svg.removeAttribute("width");
-  if (oldSvgHeight) svg.setAttribute("height", oldSvgHeight);
-  else svg.removeAttribute("height");
-  if (oldTransform) g.setAttribute("transform", oldTransform);
-  else g.removeAttribute("transform");
-
-  if (typeof setZoom === "function") {
-    setZoom((z) => z + 0.0001);
-  }
-
+  // Trả về canvas để xử lý tiếp (tải về hoặc mở tab mới)
   return canvas;
 };
 
@@ -510,14 +488,26 @@ const exportToSizedImage = async (
 ) => {
   if (setIsExporting) setIsExporting(true);
   try {
-    const scale = 2;
+    const isMobile = /iPhone|iPad|Android|Mobile/i.test(navigator.userAgent);
+    let scale;
+    if (isMobile) {
+      scale = 1;
+    } else {
+      scale = 2;
+    }
     const canvas = await generatePDFCanvas(ref, scale, setZoom);
 
     // Xuất ảnh từ canvas
-    const link = document.createElement("a");
-    link.href = canvas.toDataURL("image/png");
-    link.download = "so-do-pha-he.png";
-    link.click();
+    if (isMobile) {
+      const img = canvas.toDataURL("image/png");
+      window.open(img, "_blank");
+      alert("Ảnh đã tạo xong, vui lòng nhấn giữ để lưu về máy.");
+    } else {
+      const link = document.createElement("a");
+      link.href = canvas.toDataURL("image/png");
+      link.download = "so-do-pha-he.png";
+      link.click();
+    }
   } finally {
     fitTreeToViewport(ref, setTranslate, setZoom);
     if (setIsExporting) setIsExporting(false);
@@ -544,7 +534,7 @@ export default function SoDoPhaHeTrinhBaToc() {
   const [exportingPreview, setExportingPreview] = useState(false);
   const [exportingDownload, setExportingDownload] = useState(false);
   // Thêm biến kiểm tra thiết bị di động
-  const isMobile = /iPhone|iPad|Android|Mobile/i.test(navigator.userAgent);
+  // const isMobile = /iPhone|iPad|Android|Mobile/i.test(navigator.userAgent);
   // const treeContainer = useRef(null);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
   const [isExporting, setIsExporting] = useState(false);
@@ -678,68 +668,29 @@ export default function SoDoPhaHeTrinhBaToc() {
             </option>
           ))}
         </select>
-        {!isMobile && (
-          <>
-            <button
-              style={{
-                padding: "8px 20px",
-                background: exportingPreview ? "#fbbf24" : "#f59e0b",
-                color: "#fff",
-                border: "none",
-                borderRadius: 6,
-                fontWeight: 600,
-                cursor: exportingPreview ? "not-allowed" : "pointer",
-                marginRight: 8,
-                opacity: exportingPreview ? 0.7 : 1,
-              }}
-              disabled={exportingPreview}
-              onClick={() =>
-                previewPDF(
-                  treeContainer,
-                  paperSize,
-                  setExportingPreview,
-                  setZoom
-                )
-              }
-            >
-              {exportingPreview ? "Đang xử lý..." : "Xem trước PDF"}
-            </button>
-            <button
-              style={{
-                padding: "8px 20px",
-                background: exportingDownload ? "#fbbf24" : "#f59e0b",
-                color: "#fff",
-                border: "none",
-                borderRadius: 6,
-                fontWeight: 600,
-                cursor: exportingDownload ? "not-allowed" : "pointer",
-                marginRight: 8,
-                opacity: exportingDownload ? 0.7 : 1,
-              }}
-              disabled={exportingDownload}
-              onClick={() =>
-                downloadPDF(
-                  treeContainer,
-                  paperSize,
-                  setExportingDownload,
-                  setZoom
-                )
-              }
-            >
-              {exportingDownload ? "Đang xử lý..." : "Xuất PDF"}
-            </button>
-          </>
-        )}
         <button
-          style={{
-            padding: "8px 20px",
-            background: "#10b981",
-            color: "#fff",
-            border: "none",
-            borderRadius: 6,
-            fontWeight: 600,
-            cursor: "pointer",
-          }}
+          className="tree-actions-btn preview"
+          disabled={exportingPreview}
+          style={{}}
+          onClick={() =>
+            previewPDF(treeContainer, paperSize, setExportingPreview, setZoom)
+          }
+        >
+          {exportingPreview ? "Đang xử lý..." : "Xem trước PDF"}
+        </button>
+        <button
+          className="tree-actions-btn download"
+          disabled={exportingDownload}
+          style={{}}
+          onClick={() =>
+            downloadPDF(treeContainer, paperSize, setExportingDownload, setZoom)
+          }
+        >
+          {exportingDownload ? "Đang xử lý..." : "Xuất PDF"}
+        </button>
+        <button
+          className="tree-actions-btn export-img"
+          style={{}}
           onClick={() =>
             exportToSizedImage(
               treeContainer,
@@ -752,31 +703,15 @@ export default function SoDoPhaHeTrinhBaToc() {
           {isExporting ? "Đang xuất ảnh..." : "Xuất ảnh"}
         </button>
         <button
-          style={{
-            padding: "8px 16px",
-            background: "#6366f1",
-            color: "#fff",
-            border: "none",
-            borderRadius: 6,
-            fontWeight: 600,
-            cursor: "pointer",
-            margin: "0 8px",
-          }}
+          className="tree-actions-btn zoom"
+          style={{}}
           onClick={() => setZoom((z) => Math.min(z + 0.2, 3))}
         >
           Phóng to +
         </button>
         <button
-          style={{
-            padding: "8px 16px",
-            background: "#6366f1",
-            color: "#fff",
-            border: "none",
-            borderRadius: 6,
-            fontWeight: 600,
-            cursor: "pointer",
-            marginRight: 16,
-          }}
+          className="tree-actions-btn zoom"
+          style={{ marginRight: 16 }}
           onClick={() => setZoom((z) => Math.max(z - 0.2, 0.2))}
         >
           Thu nhỏ -
