@@ -375,85 +375,6 @@ const previewPDF = async (ref, paperSize = "a4", setExporting, setZoom) => {
   }
 };
 
-const downloadPDF = async (ref, paperSize = "a4", setExporting, setZoom) => {
-  if (setExporting) setExporting(true);
-  try {
-    const scale = 1.2;
-    const canvas = await generatePDFCanvas(ref, scale, setZoom);
-    const imgWidth = canvas.width;
-    const imgHeight = canvas.height;
-
-    const pdf = new jsPDF("landscape", "pt", paperSize);
-    const pageWidth = pdf.internal.pageSize.getWidth();
-    const pageHeight = pdf.internal.pageSize.getHeight();
-
-    // Chuyển đổi đơn vị pt của PDF sang px (96dpi màn hình / 72dpi PDF)
-    const ratio = 96 / 72;
-    const pageWidthPx = pageWidth * ratio;
-    const pageHeightPx = pageHeight * ratio;
-
-    const cols = Math.ceil(imgWidth / pageWidthPx);
-    const rows = Math.ceil(imgHeight / pageHeightPx);
-
-    for (let row = 0; row < rows; row++) {
-      for (let col = 0; col < cols; col++) {
-        const sx = col * pageWidthPx;
-        const sy = row * pageHeightPx;
-        const sWidth = Math.min(pageWidthPx, imgWidth - sx);
-        const sHeight = Math.min(pageHeightPx, imgHeight - sy);
-
-        // Tạo canvas nhỏ cho từng trang
-        const pageCanvas = document.createElement("canvas");
-        pageCanvas.width = sWidth;
-        pageCanvas.height = sHeight;
-        const ctx = pageCanvas.getContext("2d");
-        ctx.drawImage(canvas, sx, sy, sWidth, sHeight, 0, 0, sWidth, sHeight);
-
-        // Kiểm tra trang trống
-        const imageData = ctx.getImageData(0, 0, sWidth, sHeight).data;
-        let hasContent = false;
-        for (let i = 0; i < imageData.length; i += 4) {
-          if (
-            imageData[i] !== 255 ||
-            imageData[i + 1] !== 255 ||
-            imageData[i + 2] !== 255 ||
-            imageData[i + 3] !== 255
-          ) {
-            hasContent = true;
-            break;
-          }
-        }
-        if (!hasContent) continue;
-
-        // Tính tỷ lệ scale để vừa chiều rộng hoặc chiều cao, giữ nguyên tỷ lệ gốc
-        const scaleW = pageWidth / sWidth;
-        const scaleH = pageHeight / sHeight;
-        const scaleRatio = Math.min(scaleW, scaleH, 1);
-
-        const drawWidth = sWidth * scaleRatio;
-        const drawHeight = sHeight * scaleRatio;
-        const offsetX = (pageWidth - drawWidth) / 2;
-        const offsetY = (pageHeight - drawHeight) / 2;
-
-        const pageImg = pageCanvas.toDataURL("image/jpeg", 0.85);
-        if (row > 0 || col > 0) pdf.addPage();
-
-        // Tô nền trắng cho trang PDF trước khi vẽ ảnh (tránh bị trong suốt)
-        pdf.setFillColor(255, 255, 255);
-        pdf.rect(0, 0, pageWidth, pageHeight, "F");
-
-        pdf.addImage(pageImg, "JPEG", offsetX, offsetY, drawWidth, drawHeight);
-      }
-    }
-
-    pdf.save("so-do-pha-he-trinh-ba.pdf");
-  } catch (err) {
-    alert("Có lỗi khi xuất PDF. Vui lòng thử lại!");
-  } finally {
-    if (setExporting) setExporting(false);
-  }
-};
-
 function fitTreeToViewport(ref, setTranslate, setZoom, padding = 40) {
   const container = ref.current;
   if (!container) return;
@@ -546,7 +467,6 @@ export default function SoDoPhaHeTrinhBaToc() {
   const [zoom, setZoom] = useState(1);
   // const [infoExpanded, setInfoExpanded] = useState(true); // Thêm state cho expand/collapse
   const [exportingPreview, setExportingPreview] = useState(false);
-  const [exportingDownload, setExportingDownload] = useState(false);
   // Thêm biến kiểm tra thiết bị di động
   // const isMobile = /iPhone|iPad|Android|Mobile/i.test(navigator.userAgent);
   // const treeContainer = useRef(null);
@@ -653,20 +573,14 @@ export default function SoDoPhaHeTrinhBaToc() {
     <div className="tree-wrapper" style={{ position: "relative" }}>
       <h1 className="tree-title">Phả hệ Trịnh Bá Tộc - Chi 2</h1>
       {/* {info} */}
-      <div style={{ marginBottom: 16 }}>
+      <div className="tree-actions-bar">
         {/* Thêm input tìm kiếm nhánh */}
         <input
           type="text"
           placeholder="Tìm nhánh theo tên, vai trò, năm sinh..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          style={{
-            padding: "6px 12px",
-            borderRadius: 4,
-            margin: "0 16px ",
-            border: "1px solid #ccc",
-            minWidth: 220,
-          }}
+          className="tree-search-input"
         />
         <label style={{ marginRight: 8, fontWeight: 500 }}>
           Chọn khổ giấy:
@@ -693,16 +607,6 @@ export default function SoDoPhaHeTrinhBaToc() {
           {exportingPreview ? "Đang xử lý..." : "Xem trước PDF"}
         </button>
         <button
-          className="tree-actions-btn download"
-          disabled={exportingDownload}
-          style={{}}
-          onClick={() =>
-            downloadPDF(treeContainer, paperSize, setExportingDownload, setZoom)
-          }
-        >
-          {exportingDownload ? "Đang xử lý..." : "Xuất PDF"}
-        </button>
-        <button
           className="tree-actions-btn export-img"
           style={{}}
           onClick={() =>
@@ -718,14 +622,12 @@ export default function SoDoPhaHeTrinhBaToc() {
         </button>
         <button
           className="tree-actions-btn zoom"
-          style={{}}
           onClick={() => setZoom((z) => Math.min(z + 0.2, 3))}
         >
           Phóng to +
         </button>
         <button
           className="tree-actions-btn zoom"
-          style={{ marginRight: 16 }}
           onClick={() => setZoom((z) => Math.max(z - 0.2, 0.2))}
         >
           Thu nhỏ -
