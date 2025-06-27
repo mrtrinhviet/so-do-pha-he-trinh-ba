@@ -72,6 +72,7 @@
 }
 
 /* Info node */
+.tree-canvas .info-node,
 .info-node {
   margin: 0 auto;
   margin-top: 100px;
@@ -180,17 +181,18 @@
     font-size: 15px;
     box-sizing: border-box;
   }
+  .tree-canvas .info-node,
   .info-node {
-    margin-left: 12px;
-    margin-right: 12px;
-    margin-top: 32px;
-    max-width: 100%;
-    padding: 14px 10px 14px 10px;
-    font-size: 15px;
-    text-align: left;
+    margin-left: 12px !important;
+    margin-right: 12px !important;
+    margin-top: 32px !important;
+    max-width: 100% !important;
+    padding: 14px 10px 14px 10px !important;
+    font-size: 15px !important;
+    text-align: left !important;
   }
   .info-node-title {
-    font-size: 16px;
-    text-align: left;
+    font-size: 16px !important;
+    text-align: left !important;
   }
 }
