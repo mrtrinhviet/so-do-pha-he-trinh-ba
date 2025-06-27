@@ -476,17 +476,12 @@ export default function SoDoPhaHeTrinhBaToc() {
   const [paperSize, setPaperSize] = useState("a0");
   const [search, setSearch] = useState("");
   const [zoom, setZoom] = useState(1);
-  // const [infoExpanded, setInfoExpanded] = useState(true); // Thêm state cho expand/collapse
   const [exportingPreview, setExportingPreview] = useState(false);
-  // Thêm biến kiểm tra thiết bị di động
-  // const isMobile = /iPhone|iPad|Android|Mobile/i.test(navigator.userAgent);
-  // const treeContainer = useRef(null);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
   const [isExporting, setIsExporting] = useState(false);
 
   // Dữ liệu đã lọc theo nhánh
   const filteredData = useMemo(() => {
-    // Hàm lọc nhánh theo tên hoặc thuộc tính
     const filterFn = (node) => {
       if (!search.trim()) return true;
       const lower = search.trim().toLowerCase();
@@ -505,87 +500,11 @@ export default function SoDoPhaHeTrinhBaToc() {
   }, [search]);
 
   useRestoreTranslate(treeContainer, setTranslate, setZoom, [filteredData]);
-  // Thông tin về gia phả (có thể chỉnh sửa nội dung này tuỳ ý)
-  // const info = (
-  //   <div
-  //     style={{
-  //       background: "#fffbe9",
-  //       border: "1px solid #fcd34d",
-  //       borderRadius: 8,
-  //       padding: infoExpanded ? "16px 20px" : "6px 20px",
-  //       marginBottom: 20,
-  //       color: "#92400e",
-  //       fontSize: 16,
-  //       maxWidth: 900,
-  //       marginLeft: "auto",
-  //       marginRight: "auto",
-  //       boxShadow: "0 2px 8px #fbbf2433",
-  //       transition: "padding 0.2s",
-  //       position: "relative",
-  //       minHeight: 0,
-  //     }}
-  //   >
-  //     <button
-  //       onClick={() => setInfoExpanded((v) => !v)}
-  //       style={{
-  //         position: "absolute",
-  //         top: 8,
-  //         right: 12,
-  //         background: "#f59e0b",
-  //         color: "#fff",
-  //         border: "none",
-  //         borderRadius: 4,
-  //         padding: "2px 10px",
-  //         fontWeight: 600,
-  //         cursor: "pointer",
-  //         fontSize: 14,
-  //         zIndex: 2,
-  //       }}
-  //       aria-label={infoExpanded ? "Thu gọn ghi chú" : "Mở rộng ghi chú"}
-  //       title={infoExpanded ? "Thu gọn ghi chú" : "Mở rộng ghi chú"}
-  //     >
-  //       {infoExpanded ? "Ẩn ghi chú ▲" : "Hiện ghi chú ▼"}
-  //     </button>
-  //     {infoExpanded && (
-  //       <>
-  //         <b>Thông tin gia phả Trịnh Bá Tộc:</b>
-  //         <ul style={{ margin: "8px 0 0 20px", padding: 0 }}>
-  //           <li style={{ marginBottom: 10 }}>
-  //             <b>
-  //               Làng Thượng Phúc, xã Xuân Thượng, huyện Xuân Trường, tỉnh Nam
-  //               Định.
-  //             </b>
-  //           </li>
-  //           {/* <li style={{ marginBottom: 10 }}>
-  //             <b>TẠO LẬP:</b> HẬU DUỆ VIỄN TÔN - TRỊNH BÁ CHÍ TRUNG ĐỜI THỨ 18.
-  //           </li>
-  //           <li style={{ marginBottom: 10 }}>
-  //             <b>TUẾ THỨ:</b> ẤT TỴ NIÊN - SƠ TỨ NGUYỆT - NHỊ THẬP NGŨ NHẬT -
-  //             2025.
-  //           </li> */}
-  //           <li style={{ marginBottom: 10 }}>
-  //             <b>
-  //               "CON NGƯỜI SINH TRƯỞNG BỞI ĐÂU,
-  //               <br />
-  //               GỐC LÀ TIÊN TỔ - ƠN SÂU RÕ RÀNG…"
-  //             </b>
-  //           </li>
-  //           {/* <li style={{ marginBottom: 10 }}>
-  //             <b>Ý nghĩa:</b> Sơ đồ giúp con cháu hiểu về nguồn cội, kết nối các
-  //             thế hệ, lưu giữ truyền thống gia đình.
-  //           </li> */}
-  //         </ul>
-  //       </>
-  //     )}
-  //   </div>
-  // );
 
   return (
-    <div className="tree-wrapper" style={{ position: "relative" }}>
+    <div className="tree-wrapper">
       <h1 className="tree-title">Phả hệ Trịnh Bá Tộc - Chi 2</h1>
-      {/* {info} */}
       <div className="tree-actions-bar">
-        {/* Thêm input tìm kiếm nhánh */}
         <input
           type="text"
           placeholder="Tìm nhánh theo tên, vai trò, năm sinh..."
@@ -593,9 +512,7 @@ export default function SoDoPhaHeTrinhBaToc() {
           onChange={(e) => setSearch(e.target.value)}
           className="tree-search-input"
         />
-        <label style={{ marginRight: 8, fontWeight: 500 }}>
-          Chọn khổ giấy:
-        </label>
+        <label className="tree-paper-label">Chọn khổ giấy:</label>
         <select
           value={paperSize}
           onChange={(e) => setPaperSize(e.target.value)}
@@ -609,7 +526,6 @@ export default function SoDoPhaHeTrinhBaToc() {
         <button
           className="tree-actions-btn preview"
           disabled={exportingPreview}
-          style={{}}
           onClick={() =>
             previewPDF(treeContainer, paperSize, setExportingPreview, setZoom)
           }
@@ -618,7 +534,6 @@ export default function SoDoPhaHeTrinhBaToc() {
         </button>
         <button
           className="tree-actions-btn export-img"
-          style={{}}
           onClick={() =>
             exportToSizedImage(
               treeContainer,
@@ -644,38 +559,11 @@ export default function SoDoPhaHeTrinhBaToc() {
         </button>
       </div>
       {isExporting && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            background: "rgba(255,255,255,0.6)",
-            zIndex: 9999,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: 24,
-            color: "#f59e0b",
-            fontWeight: 600,
-            pointerEvents: "auto",
-          }}
-        >
+        <div className="tree-exporting-overlay">
           Đang xuất ảnh, vui lòng chờ...
         </div>
       )}
-      <div
-        ref={treeContainer}
-        className="tree-canvas"
-        style={{
-          width: "100%",
-          height: "80vh",
-          overflow: "auto",
-          border: "1px solid #e5e7eb",
-          background: "#fffbe9",
-        }}
-      >
+      <div ref={treeContainer} className="tree-canvas">
         <div className="info-node">
           <b className="info-node-title">Phả hệ Trịnh Bá Tộc - Chi 2</b>
           <ul className="info-node-list">
@@ -685,7 +573,6 @@ export default function SoDoPhaHeTrinhBaToc() {
                 Định.
               </b>
             </li>
-
             <li>
               <b>
                 "CON NGƯỜI SINH TRƯỞNG BỞI ĐÂU,
