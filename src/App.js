@@ -443,7 +443,7 @@ const exportToSizedImage = async (
       win.document.body.innerHTML = `
         <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;background:#fffbe9;">
           <img src="${img}" style="max-width:100vw;max-height:80vh;display:block;margin:auto"/>
-          <div style="color:#92400e;font-size:18px;margin:18px 0 0 0;text-align:center">
+          <div style="color:#92400e;font-size:18px;margin:8px 0 0 0;text-align:center">
             Nhấn giữ vào ảnh để lưu về máy
           </div>
         </div>
