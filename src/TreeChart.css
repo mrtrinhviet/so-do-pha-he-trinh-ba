@@ -145,8 +145,10 @@
 }
 
 .tree-search-input {
-  border-radius: 4;
-  border: "1px solid #ccc";
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  font-size: 16px;
 }
 
 @media (max-width: 600px) {
@@ -155,7 +157,8 @@
     gap: 6px;
   }
   .tree-actions-bar input,
-  .tree-actions-bar select {
+  .tree-actions-bar select,
+  .tree-search-input {
     min-width: 0;
     width: 100%;
     margin: 4px 0;

@@ -441,8 +441,12 @@ const exportToSizedImage = async (
     if (isMobile) {
       const img = canvas.toDataURL("image/png");
       win.document.body.innerHTML = `
-        <img src="${img}" style="max-width:100vw;max-height:100vh;display:block;margin:auto"/>
-        <div style="color:#92400e;font-size:18px;margin:12px 0;text-align:center">Nhấn giữ vào ảnh để lưu về máy</div>
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;background:#fffbe9;">
+          <img src="${img}" style="max-width:100vw;max-height:80vh;display:block;margin:auto"/>
+          <div style="color:#92400e;font-size:18px;margin:18px 0 0 0;text-align:center">
+            Nhấn giữ vào ảnh để lưu về máy
+          </div>
+        </div>
       `;
     } else {
       const link = document.createElement("a");
