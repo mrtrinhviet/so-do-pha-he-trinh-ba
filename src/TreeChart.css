@@ -140,6 +140,10 @@
   background: #10b981;
 }
 
+.tree-actions-btn.export-svg {
+  background: #1097b9;
+}
+
 .tree-actions-btn.zoom {
   background: #6366f1;
   margin: 0 8px 0 0;

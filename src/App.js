@@ -471,6 +471,145 @@ export const useRestoreTranslate = (ref, setTranslate, setZoom, deps = []) => {
   }, deps);
 };
 
+function exportSVG(ref) {
+  if (!ref.current) {
+    alert("Không tìm thấy SVG!");
+    return;
+  }
+  const svg = ref.current.querySelector("svg");
+  if (!svg) {
+    alert("Không tìm thấy SVG!");
+    return;
+  }
+
+  // Clone toàn bộ SVG
+  const clone = svg.cloneNode(true);
+
+  // Kích thước khổ in (mm)
+  const targetWidth = 1200;
+  const targetHeight = 600;
+
+  // Lấy group chính và bbox thực tế
+  const g = clone.querySelector("g");
+  const bbox = g.getBBox();
+  const infoNodeWidth = 650;
+  const infoNodeHeight = 110;
+  const paddingTop = infoNodeHeight + 100; // 20mm cách giữa info-node và cây
+
+  // Tính lại scale như cũ
+  const scale = Math.min(
+    targetWidth / bbox.width,
+    (targetHeight - paddingTop) / bbox.height
+  );
+
+  // Đẩy cây xuống dưới info-node
+  const tx = (targetWidth - bbox.width * scale) / 2 - bbox.x * scale;
+  const ty =
+    paddingTop +
+    (targetHeight - paddingTop - bbox.height * scale) / 2 -
+    bbox.y * scale;
+
+  g.setAttribute("transform", `translate(${tx},${ty}) scale(${scale})`);
+
+  // Set width/height/viewBox cho SVG
+  clone.setAttribute("width", `${targetWidth}mm`);
+  clone.setAttribute("height", `${targetHeight}mm`);
+  clone.setAttribute("viewBox", `0 0 ${targetWidth} ${targetHeight}`);
+
+  // Ép stroke-width và vector-effect cho tất cả path, line, polyline
+  clone.querySelectorAll("path, line, polyline").forEach((el) => {
+    if (
+      el.getAttribute("class")?.includes("link") ||
+      (!el.getAttribute("class") &&
+        el.tagName !== "rect" &&
+        el.tagName !== "circle")
+    ) {
+      el.setAttribute("stroke-width", "2");
+      el.setAttribute("vector-effect", "non-scaling-stroke");
+      if (!el.getAttribute("stroke")) {
+        el.setAttribute("stroke", "black");
+      }
+    }
+  });
+
+  // Thêm info-node vào góc trên bên phải SVG (giữ nguyên phần này nếu bạn muốn)
+  const infoGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+  const infoX = infoNodeWidth / 2 - 2900; // Căn sát mép trái
+  const infoY = infoNodeHeight / 2 - 140; // Căn sát mép trên
+  infoGroup.setAttribute("transform", `translate(${infoX}, ${infoY})`);
+
+  // Nền
+  const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  rect.setAttribute("x", -infoNodeWidth / 2);
+  rect.setAttribute("y", -infoNodeHeight / 2);
+  rect.setAttribute("width", infoNodeWidth);
+  rect.setAttribute("height", infoNodeHeight);
+  rect.setAttribute("rx", 18);
+  rect.setAttribute("fill", "#f3f4f6");
+  rect.setAttribute("stroke", "#d1d5db");
+  rect.setAttribute("stroke-width", 2);
+  // Đặt opacity cho nền nếu muốn mờ
+  rect.setAttribute("opacity", "0.85");
+  infoGroup.appendChild(rect);
+
+  // Tiêu đề
+  const title = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  title.setAttribute("x", 0);
+  title.setAttribute("y", -25);
+  title.setAttribute("text-anchor", "middle");
+  title.setAttribute("font-size", 22);
+  title.setAttribute("font-weight", "bold");
+  title.setAttribute("fill", "#92400e");
+  title.textContent = "Phả hệ Trịnh Bá Tộc - Chi 2";
+  infoGroup.appendChild(title);
+
+  // Địa chỉ
+  const address = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "text"
+  );
+  address.setAttribute("x", 0);
+  address.setAttribute("y", 0);
+  address.setAttribute("text-anchor", "middle");
+  address.setAttribute("font-size", 15);
+  address.setAttribute("fill", "#1e293b");
+  address.textContent =
+    "Làng Thượng Phúc, xã Xuân Thượng, huyện Xuân Trường, tỉnh Nam Định.";
+  infoGroup.appendChild(address);
+
+  // Câu thơ
+  const poem = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  poem.setAttribute("x", 0);
+  poem.setAttribute("y", 28);
+  poem.setAttribute("text-anchor", "middle");
+  poem.setAttribute("font-size", 14);
+  poem.setAttribute("fill", "#92400e");
+  poem.textContent =
+    '"CON NGƯỜI SINH TRƯỞNG BỞI ĐÂU, GỐC LÀ TIÊN TỔ - ƠN SÂU RÕ RÀNG…"';
+  infoGroup.appendChild(poem);
+
+  clone.insertBefore(infoGroup, g);
+  // Thêm namespace nếu thiếu
+  if (!clone.getAttribute("xmlns")) {
+    clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  }
+
+  // Xuất SVG
+  const svgData = new XMLSerializer().serializeToString(clone);
+  const blob = new Blob([svgData], { type: "image/svg+xml" });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "so-do-pha-he.svg";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
 export default function SoDoPhaHeTrinhBaToc() {
   const treeContainer = useRef(null);
   const [paperSize, setPaperSize] = useState("a0");
@@ -479,6 +618,11 @@ export default function SoDoPhaHeTrinhBaToc() {
   const [exportingPreview, setExportingPreview] = useState(false);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
   const [isExporting, setIsExporting] = useState(false);
+  const [isTreeReady, setIsTreeReady] = useState(false); // Thêm state này
+  const [pendingExportSVG, setPendingExportSVG] = useState(false);
+  const [requestExportSVG, setRequestExportSVG] = useState(false); // Thêm state này
+  const [waitingForFit, setWaitingForFit] = useState(false); // Thêm state này
+  const [isDesktop, setIsDesktop] = useState(true);
 
   // Dữ liệu đã lọc theo nhánh
   const filteredData = useMemo(() => {
@@ -501,6 +645,68 @@ export default function SoDoPhaHeTrinhBaToc() {
 
   useRestoreTranslate(treeContainer, setTranslate, setZoom, [filteredData]);
 
+  useEffect(() => {
+    // Kiểm tra thiết bị desktop
+    const isMobile = /iPhone|iPad|Android|Mobile/i.test(navigator.userAgent);
+    setIsDesktop(!isMobile);
+  }, []);
+  // Kiểm tra cây đã render xong chưa
+
+  useEffect(() => {
+    let timeout;
+    function checkReady(retry = 0) {
+      const container = treeContainer.current;
+      if (!container) {
+        setIsTreeReady(false);
+        return;
+      }
+      const svg = container.querySelector("svg");
+      const gs = svg && svg.querySelectorAll("g");
+      const g = gs && gs[gs.length - 1];
+      if (g) {
+        const bbox = g.getBBox();
+        // console.log("DEBUG bbox:", bbox, "retry:", retry);
+        if (bbox.width > 0 && bbox.height > 0) {
+          setIsTreeReady(true);
+          return;
+        }
+      }
+      if (retry < 40) {
+        timeout = setTimeout(() => checkReady(retry + 1), 150);
+      } else {
+        setIsTreeReady(false);
+      }
+    }
+    setIsTreeReady(false);
+    checkReady();
+    return () => clearTimeout(timeout);
+  }, [filteredData, zoom, translate]);
+
+  // Khi requestExportSVG, fitTreeToViewport rồi chờ translate/zoom thay đổi
+  useEffect(() => {
+    if (requestExportSVG) {
+      fitTreeToViewport(treeContainer, setTranslate, setZoom, 40);
+      setWaitingForFit(true);
+      setRequestExportSVG(false);
+    }
+  }, [requestExportSVG]);
+
+  // Khi translate hoặc zoom thay đổi sau fit, mới set pendingExportSVG
+  useEffect(() => {
+    if (waitingForFit) {
+      setPendingExportSVG(true);
+      setWaitingForFit(false);
+    }
+    // eslint-disable-next-line
+  }, [translate, zoom]);
+
+  // Khi pendingExportSVG và isTreeReady đều true thì export
+  useEffect(() => {
+    if (pendingExportSVG && isTreeReady) {
+      exportSVG(treeContainer);
+      setPendingExportSVG(false);
+    }
+  }, [pendingExportSVG, isTreeReady]);
   return (
     <div className="tree-wrapper">
       <h1 className="tree-title">Phả hệ Trịnh Bá Tộc - Chi 2</h1>
@@ -544,6 +750,14 @@ export default function SoDoPhaHeTrinhBaToc() {
           }
         >
           {isExporting ? "Đang xuất ảnh..." : "Xuất ảnh"}
+        </button>
+        <button
+          className="tree-actions-btn export-svg"
+          disabled={!isTreeReady || !isDesktop}
+          onClick={() => setRequestExportSVG(true)}
+          title={!isDesktop ? "Chức năng này chỉ hỗ trợ trên máy tính" : ""}
+        >
+          {isTreeReady ? "Xuất SVG" : "Đang tải cây..."}
         </button>
         <button
           className="tree-actions-btn zoom"
@@ -592,6 +806,7 @@ export default function SoDoPhaHeTrinhBaToc() {
           separation={{ siblings: 3, nonSiblings: 3 }}
           nodeSize={{ x: 80, y: 220 }}
           renderCustomNodeElement={renderCustomNode}
+          pathFunc="straight"
         />
       </div>
     </div>
